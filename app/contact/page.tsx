@@ -148,7 +148,7 @@ export default function ContactPage() {
                 </a>
                 <div className="flex items-center gap-3">
                   <MapPin size={16} />
-                  Brazil (UTC-3)
+                  Phoenix, AZ (UTC-7)
                 </div>
               </div>
 

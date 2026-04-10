@@ -1,17 +1,25 @@
-'use client'
+'use client';
 
-import Link from 'next/link'
-import Image from 'next/image'
-import { useTypingEffect } from '@/hooks/useTypingEffect'
-import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/ui/SocialIcons'
+import Link from 'next/link';
+import Image from 'next/image';
+import { useTypingEffect } from '@/hooks/useTypingEffect';
+import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/ui/SocialIcons';
 
-const TAGLINE = "I build things for the web — and teach machines to think."
+const TAGLINE = 'I build things for the web — and teach machines to think.';
 
 const socials = [
-  { href: 'https://github.com/luizmeneghim', icon: GitHubIcon, label: 'GitHub' },
-  { href: 'https://linkedin.com/in/luizmeneghim', icon: LinkedInIcon, label: 'LinkedIn' },
+  {
+    href: 'https://github.com/luizmeneghim',
+    icon: GitHubIcon,
+    label: 'GitHub',
+  },
+  {
+    href: 'https://linkedin.com/in/luizmeneghim',
+    icon: LinkedInIcon,
+    label: 'LinkedIn',
+  },
   { href: 'https://twitter.com/luizmeneghim', icon: XIcon, label: 'Twitter' },
-]
+];
 
 const services = [
   'Web Development',
@@ -19,10 +27,10 @@ const services = [
   'LLM Engineering',
   'Server Admin',
   'Tech Assistance',
-]
+];
 
 export default function Hero() {
-  const displayedTagline = useTypingEffect(TAGLINE)
+  const displayedTagline = useTypingEffect(TAGLINE);
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -30,7 +38,8 @@ export default function Hero() {
       <div
         className="absolute top-0 left-0 w-[500px] h-[500px] pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(0,212,170,0.12) 0%, transparent 65%)',
+          background:
+            'radial-gradient(circle, rgba(0,212,170,0.12) 0%, transparent 65%)',
         }}
       />
 
@@ -45,7 +54,9 @@ export default function Hero() {
           </div>
 
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] tracking-tight">
-            Luiz<br />Meneghim
+            Luiz
+            <br />
+            Meneghim
           </h1>
 
           <p className="text-slate-400 text-lg max-w-md leading-relaxed min-h-[56px]">
@@ -87,20 +98,23 @@ export default function Hero() {
         {/* Right: photo with fade */}
         <div className="hidden md:block relative flex-shrink-0 w-[420px] h-[560px]">
           <Image
-            src="/images/luiz.jpg"
+            src="/images/luiz-meneghim-hero.jpg"
             alt="Luiz Meneghim"
             fill
             priority
             className="object-cover object-top rounded-2xl"
             style={{
-              maskImage: 'linear-gradient(to left, black 40%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to left, black 40%, transparent 100%)',
+              maskImage:
+                'linear-gradient(to left, black 40%, transparent 100%)',
+              WebkitMaskImage:
+                'linear-gradient(to left, black 40%, transparent 100%)',
             }}
           />
           <div
             className="absolute inset-0 pointer-events-none rounded-2xl"
             style={{
-              background: 'linear-gradient(to right, #0A0F1E 0%, transparent 35%)',
+              background:
+                'linear-gradient(to right, #0A0F1E 0%, transparent 35%)',
             }}
           />
         </div>
@@ -114,12 +128,14 @@ export default function Hero() {
           </span>
           {services.map((s, i) => (
             <span key={s} className="flex items-center gap-6 text-slate-400">
-              {i > 0 && <span className="text-border-subtle mr-[-18px]">·</span>}
+              {i > 0 && (
+                <span className="text-border-subtle mr-[-18px]">·</span>
+              )}
               {s}
             </span>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

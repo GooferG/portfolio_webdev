@@ -1,20 +1,33 @@
-import type { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Download } from 'lucide-react'
-import { FadeIn } from '@/components/ui/FadeIn'
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Download } from 'lucide-react';
+import { FadeIn } from '@/components/ui/FadeIn';
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'Learn more about Luiz Meneghim — web developer and AI engineer.',
-}
+  description:
+    'Learn more about Luiz Meneghim — web developer and AI engineer.',
+};
 
 const skills = [
-  'React', 'Next.js', 'TypeScript', 'Node.js',
-  'Python', 'LLMs / RAG', 'HuggingFace', 'OpenAI API',
-  'Docker', 'Linux', 'PostgreSQL', 'Vercel',
-  'Tailwind CSS', 'Framer Motion', 'Git', 'AWS',
-]
+  'React',
+  'Next.js',
+  'TypeScript',
+  'Node.js',
+  'Python',
+  'LLMs / RAG',
+  'HuggingFace',
+  'OpenAI API',
+  'Docker',
+  'Linux',
+  'PostgreSQL',
+  'Vercel',
+  'Tailwind CSS',
+  'Framer Motion',
+  'Git',
+  'AWS',
+];
 
 export default function AboutPage() {
   return (
@@ -31,7 +44,7 @@ export default function AboutPage() {
           <div className="relative">
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden max-w-sm">
               <Image
-                src="/images/luiz.jpg"
+                src="/images/luiz-about.jpg"
                 alt="Luiz Meneghim"
                 fill
                 className="object-cover object-top"
@@ -40,7 +53,10 @@ export default function AboutPage() {
             </div>
             <div
               className="absolute -bottom-4 -right-4 w-48 h-48 rounded-full pointer-events-none"
-              style={{ background: 'radial-gradient(circle, rgba(0,212,170,0.15) 0%, transparent 70%)' }}
+              style={{
+                background:
+                  'radial-gradient(circle, rgba(0,212,170,0.15) 0%, transparent 70%)',
+              }}
             />
           </div>
         </FadeIn>
@@ -49,20 +65,23 @@ export default function AboutPage() {
           <FadeIn delay={0.1}>
             <div className="flex flex-col gap-5 text-slate-400 leading-relaxed">
               <p>
-                Hey, I&apos;m Luiz — a web developer and AI engineer. I build modern web
-                applications and help businesses integrate AI into their workflows. I care about
-                clean code, great user experiences, and shipping things that actually work.
+                Hey, I&apos;m Luiz — a web developer and AI engineer. I build
+                modern web applications and help businesses integrate AI into
+                their workflows. I care about clean code, great user
+                experiences, and shipping things that actually work.
               </p>
               <p>
-                On the web side, I focus on React and Next.js applications — from small business
-                landing pages to full-stack web apps. On the AI side, I work with LLMs, RAG
-                pipelines, fine-tuning, and API integrations to help teams move from &quot;AI curious&quot;
-                to &quot;AI productive.&quot;
+                On the web side, I focus on React and Next.js applications —
+                from small business landing pages to full-stack web apps. On the
+                AI side, I work with LLMs, RAG pipelines, fine-tuning, and API
+                integrations to help teams move from &quot;AI curious&quot; to
+                &quot;AI productive.&quot;
               </p>
               <p>
-                When I&apos;m not writing code, I&apos;m setting up home labs, wiring up AV systems, or
-                building out smart home setups. I like making technology work for people — whether
-                that&apos;s a React app or a movie room.
+                When I&apos;m not writing code, I&apos;m setting up home labs,
+                wiring up AV systems, or building out smart home setups. I like
+                making technology work for people — whether that&apos;s a React
+                app or a movie room.
               </p>
             </div>
           </FadeIn>
@@ -86,9 +105,11 @@ export default function AboutPage() {
 
           <FadeIn delay={0.2}>
             <div>
-              <h2 className="text-white font-semibold text-base mb-4">Tech Stack</h2>
+              <h2 className="text-white font-semibold text-base mb-4">
+                Tech Stack
+              </h2>
               <div className="flex flex-wrap gap-2">
-                {skills.map(skill => (
+                {skills.map((skill) => (
                   <span
                     key={skill}
                     className="px-3 py-1.5 bg-bg-card border border-border-subtle rounded-lg text-slate-400 text-sm hover:border-accent/50 hover:text-white transition-colors"
@@ -111,5 +132,5 @@ export default function AboutPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
