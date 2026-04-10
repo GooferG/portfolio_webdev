@@ -1,33 +1,33 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { Mail, MapPin, CheckCircle, AlertCircle } from 'lucide-react'
-import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/ui/SocialIcons'
-import { FadeIn } from '@/components/ui/FadeIn'
+import { useState } from 'react';
+import { Mail, MapPin, CheckCircle, AlertCircle } from 'lucide-react';
+import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/ui/SocialIcons';
+import { FadeIn } from '@/components/ui/FadeIn';
 
-type FormStatus = 'idle' | 'loading' | 'success' | 'error'
+type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
-const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID ?? ''
+const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID ?? '';
 
 export default function ContactPage() {
-  const [status, setStatus] = useState<FormStatus>('idle')
+  const [status, setStatus] = useState<FormStatus>('idle');
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setStatus('loading')
+    e.preventDefault();
+    setStatus('loading');
 
-    const formData = new FormData(e.currentTarget)
+    const formData = new FormData(e.currentTarget);
     const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
       method: 'POST',
       body: formData,
       headers: { Accept: 'application/json' },
-    })
+    });
 
     if (res.ok) {
-      setStatus('success')
-      ;(e.target as HTMLFormElement).reset()
+      setStatus('success');
+      (e.target as HTMLFormElement).reset();
     } else {
-      setStatus('error')
+      setStatus('error');
     }
   }
 
@@ -82,7 +82,7 @@ export default function ContactPage() {
                 name="subject"
                 type="text"
                 required
-                placeholder="What&apos;s this about?"
+                placeholder="What's this about?"
                 className="bg-bg-card border border-border-subtle rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-accent transition-colors"
               />
             </div>
@@ -129,13 +129,16 @@ export default function ContactPage() {
           <div className="flex flex-col gap-8">
             <div className="flex items-center gap-2 px-4 py-2.5 bg-accent/10 border border-accent/30 rounded-xl w-fit">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              <span className="text-accent text-sm font-medium">Available for work</span>
+              <span className="text-accent text-sm font-medium">
+                Available for work
+              </span>
             </div>
 
             <div className="flex flex-col gap-6 text-slate-400 text-sm">
               <p className="leading-relaxed">
-                Whether you need a new website, AI integration, server help, or just want to talk
-                tech — I&apos;m happy to chat. I respond within 24 hours.
+                Whether you need a new website, AI integration, server help, or
+                just want to talk tech — I&apos;m happy to chat. I respond
+                within 24 hours.
               </p>
 
               <div className="flex flex-col gap-4">
@@ -154,31 +157,31 @@ export default function ContactPage() {
 
               <div className="flex flex-col gap-3 pt-4 border-t border-border-subtle">
                 <a
-                  href="https://github.com/luizmeneghim"
+                  href="https://github.com/gooferg"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 hover:text-accent transition-colors"
                 >
                   <GitHubIcon size={16} />
-                  github.com/luizmeneghim
+                  github.com/gooferg
                 </a>
                 <a
-                  href="https://linkedin.com/in/luizmeneghim"
+                  href="https://www.linkedin.com/in/lmeneghim/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 hover:text-accent transition-colors"
                 >
                   <LinkedInIcon size={16} />
-                  linkedin.com/in/luizmeneghim
+                  linkedin.com/in/lmeneghim/
                 </a>
                 <a
-                  href="https://twitter.com/luizmeneghim"
+                  href="https://x.com/Goofer_G"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 hover:text-accent transition-colors"
                 >
                   <XIcon size={16} />
-                  twitter.com/luizmeneghim
+                  x.com/Goofer_G
                 </a>
               </div>
             </div>
@@ -186,5 +189,5 @@ export default function ContactPage() {
         </FadeIn>
       </div>
     </div>
-  )
+  );
 }
