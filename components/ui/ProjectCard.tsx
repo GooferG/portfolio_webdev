@@ -31,7 +31,7 @@ export function ProjectCard({ project }: { project: Project }) {
         </div>
 
         <div className="flex items-center gap-3">
-          {project.github && project.github !== '#' && (
+          {project.github && (
             <a
               href={project.github}
               target="_blank"
@@ -42,7 +42,7 @@ export function ProjectCard({ project }: { project: Project }) {
               GitHub
             </a>
           )}
-          {project.live && project.live !== '#' && (
+          {project.live && (
             <a
               href={project.live}
               target="_blank"
