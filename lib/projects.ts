@@ -4,11 +4,13 @@ export interface Project {
   id: string;
   title: string;
   description: string;
+  longDescription?: string;
   tags: string[];
   category: ProjectCategory;
   github: string;
   live: string;
   image: string;
+  screenshots?: string[];
   featured: boolean;
 }
 
@@ -28,6 +30,7 @@ export const projects: Project[] = [
     github: 'https://github.com/GooferG/universally-us',
     live: 'https://universallyus.com',
     image: 'images/universallyus_screenshot.jpg',
+    screenshots: ['images/universallyus_screenshot.jpg'],
     featured: true,
   },
   {
@@ -40,6 +43,7 @@ export const projects: Project[] = [
     github: 'https://github.com/GooferG/streamsite',
     live: 'https://goofer.tv',
     image: '/images/goofertv.jpg',
+    screenshots: ['/images/goofertv.jpg'],
     featured: true,
   },
   {
@@ -59,12 +63,17 @@ export const projects: Project[] = [
     github: 'https://github.com/GooferG/leadgenerator_ai',
     live: 'https://leadgenerator-ai-9aop.vercel.app/',
     image: '/images/lead_generator.jpg',
+    screenshots: ['/images/lead_generator.jpg'],
     featured: true,
   },
 ];
 
 export function getFeaturedProjects(): Project[] {
   return projects.filter((p) => p.featured);
+}
+
+export function getProjectById(id: string): Project | undefined {
+  return projects.find(p => p.id === id)
 }
 
 export function getProjectsByCategory(
