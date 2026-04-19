@@ -61,7 +61,7 @@ export const projects: Project[] = [
     ],
     category: 'Apps',
     github: 'https://github.com/GooferG/leadgenerator_ai',
-    live: 'https://leadgenerator-ai-9aop.vercel.app/',
+    live: 'https://leadgenerator-ai.vercel.app/',
     image: '/images/lead_generator.jpg',
     screenshots: ['/images/lead_generator.jpg'],
     featured: true,
@@ -73,7 +73,7 @@ export function getFeaturedProjects(): Project[] {
 }
 
 export function getProjectById(id: string): Project | undefined {
-  return projects.find(p => p.id === id)
+  return projects.find((p) => p.id === id);
 }
 
 export function getProjectsByCategory(
