@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { GitHubCalendar } from 'react-github-calendar';
 import { useTypingEffect } from '@/hooks/useTypingEffect';
 import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/ui/SocialIcons';
 
@@ -119,6 +120,28 @@ export default function Hero() {
           />
         </div>
       </div>
+
+      {/* github integration for hero section */}
+
+      {/* <div className="absolute bottom-14 left-0 right-0 z-20 px-6 pb-15">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-bg-card/80 backdrop-blur-md border border-border-subtle rounded-2xl p-4 md:p-6">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-xs text-slate-500 uppercase tracking-widest">
+                GitHub Activity
+              </span>
+              <span className="text-xs text-slate-600">@GooferG</span>
+            </div>
+
+            <GitHubCalendar
+              username="GooferG"
+              blockSize={12}
+              blockMargin={4}
+              fontSize={12}
+            />
+          </div>
+        </div>
+      </div> */}
 
       {/* Service strip — bottom */}
       <div className="absolute bottom-0 left-0 right-0 z-20 bg-black/60 backdrop-blur-md border-t border-border-subtle py-3 px-6 overflow-x-auto">

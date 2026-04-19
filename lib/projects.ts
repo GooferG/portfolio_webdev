@@ -34,7 +34,7 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: 'Streamer Fullstack Website',
+    id: 'streamer-fullstack-website',
     title: 'Streamer Fullstack Website',
     description:
       'A fullstack website for a streamer, built with Next.js and Tailwind CSS, featuring a modern design and seamless user experience. The site includes Twitch integration via API calls, tools for managing stream schedules and content, and is deployed on Vercel for optimal performance.',
