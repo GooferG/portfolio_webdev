@@ -10,6 +10,7 @@ export interface Project {
   github: string;
   live: string;
   image: string;
+  imagePosition?: string;
   screenshots?: string[];
   featured: boolean;
 }
@@ -29,8 +30,9 @@ export const projects: Project[] = [
     category: 'Web',
     github: 'https://github.com/GooferG/universally-us',
     live: 'https://universallyus.com',
-    image: 'images/universallyus_screenshot.jpg',
-    screenshots: ['images/universallyus_screenshot.jpg'],
+    image: '/images/universallyus_screenshot.jpg',
+    imagePosition: 'center 0%',
+    screenshots: ['/images/universallyus_screenshot.jpg'],
     featured: true,
   },
   {
@@ -38,11 +40,12 @@ export const projects: Project[] = [
     title: 'Streamer Fullstack Website',
     description:
       'A fullstack website for a streamer, built with Next.js and Tailwind CSS, featuring a modern design and seamless user experience. The site includes Twitch integration via API calls, tools for managing stream schedules and content, and is deployed on Vercel for optimal performance.',
-    tags: ['Next.js', 'Tailwind', 'Vercel'],
+    tags: ['Next.js', 'Tailwind', 'Vercel', 'Twitch API', 'Generative AI'],
     category: 'Web',
     github: 'https://github.com/GooferG/streamsite',
     live: 'https://goofer.tv',
     image: '/images/goofertv.jpg',
+    imagePosition: 'center 0%',
     screenshots: ['/images/goofertv.jpg'],
     featured: true,
   },
@@ -63,7 +66,22 @@ export const projects: Project[] = [
     github: 'https://github.com/GooferG/leadgenerator_ai',
     live: 'https://leadgenerator-ai.vercel.app/',
     image: '/images/lead_generator.jpg',
+    imagePosition: 'center 85%',
     screenshots: ['/images/lead_generator.jpg'],
+    featured: true,
+  },
+  {
+    id: 'TMR-sleep-app',
+    title: 'Somnicue Sleep App',
+    description:
+      'SomniCue uses Targeted Memory Reactivation (TMR) — a neuroscience-backed technique — to control what your brain consolidates while you sleep. Memories, motor patterns, breakthroughs, all on your terms. The app plays specific sounds during sleep to enhance memory consolidation, improve learning, and boost creativity. It’s like a personal trainer for your brain, optimizing your sleep for better performance.',
+    tags: ['Next.js 14', 'Typescript', 'Tailwind CSS 3'],
+    category: 'Apps',
+    github: 'https://github.com/dweberdev/somnicue',
+    live: 'https://somnicue.com',
+    image: '/images/somnicue.jpg',
+    imagePosition: 'center 57%',
+    screenshots: ['/images/somnicue.jpg'],
     featured: true,
   },
 ];

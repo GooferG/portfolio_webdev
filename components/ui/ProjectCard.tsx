@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { ExternalLink } from 'lucide-react'
@@ -13,13 +15,14 @@ export function ProjectCard({ project }: { project: Project }) {
             src={project.image}
             alt={project.title}
             fill
+            style={project.imagePosition ? { objectPosition: project.imagePosition } : undefined}
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </div>
 
         <div className="p-5 flex flex-col flex-1">
           <h3 className="text-white font-semibold text-base mb-2">{project.title}</h3>
-          <p className="text-slate-500 text-sm leading-relaxed mb-4 flex-1">{project.description}</p>
+          <p className="text-slate-500 text-sm leading-relaxed mb-4 flex-1 line-clamp-4">{project.description}</p>
 
           <div className="flex flex-wrap gap-2 mb-4">
             {project.tags.map(tag => (
@@ -34,16 +37,28 @@ export function ProjectCard({ project }: { project: Project }) {
 
           <div className="flex items-center gap-3">
             {project.github && (
-              <span className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white border border-border-subtle rounded-lg px-3 py-1.5 transition-colors">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white border border-border-subtle rounded-lg px-3 py-1.5 transition-colors"
+              >
                 <GitHubIcon size={13} />
                 GitHub
-              </span>
+              </a>
             )}
             {project.live && (
-              <span className="flex items-center gap-1.5 text-xs text-accent hover:text-accent/80 border border-accent/30 rounded-lg px-3 py-1.5 transition-colors">
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="flex items-center gap-1.5 text-xs text-accent hover:text-accent/80 border border-accent/30 rounded-lg px-3 py-1.5 transition-colors"
+              >
                 <ExternalLink size={13} />
                 Live
-              </span>
+              </a>
             )}
           </div>
         </div>

@@ -42,7 +42,7 @@ export default function ProjectsPage() {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((project, i) => (
-          <FadeIn key={project.id} delay={i * 0.08}>
+          <FadeIn key={project.id} delay={i * 0.08} className="h-full">
             <ProjectCard project={project} />
           </FadeIn>
         ))}

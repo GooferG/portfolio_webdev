@@ -27,7 +27,7 @@ export function FeaturedProjects() {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {featured.map((project, i) => (
-          <FadeIn key={project.id} delay={i * 0.1}>
+          <FadeIn key={project.id} delay={i * 0.1} className="h-full">
             <ProjectCard project={project} />
           </FadeIn>
         ))}
