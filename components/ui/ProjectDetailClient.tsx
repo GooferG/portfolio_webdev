@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowLeft, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowLeft, ExternalLink, ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { GitHubIcon } from '@/components/ui/SocialIcons'
 import type { Project } from '@/lib/projects'
 
@@ -16,6 +16,30 @@ interface Props {
 export function ProjectDetailClient({ project, prevProject, nextProject }: Props) {
   const screenshots = project.screenshots?.length ? project.screenshots : [project.image]
   const [activeIndex, setActiveIndex] = useState(0)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+
+  const showPrev = useCallback(() => {
+    setActiveIndex((i) => (i === 0 ? screenshots.length - 1 : i - 1))
+  }, [screenshots.length])
+
+  const showNext = useCallback(() => {
+    setActiveIndex((i) => (i === screenshots.length - 1 ? 0 : i + 1))
+  }, [screenshots.length])
+
+  useEffect(() => {
+    if (!lightboxOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxOpen(false)
+      else if (e.key === 'ArrowLeft') showPrev()
+      else if (e.key === 'ArrowRight') showNext()
+    }
+    window.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [lightboxOpen, showPrev, showNext])
 
   return (
     <div className="max-w-5xl mx-auto px-6 pt-32 pb-24">
@@ -44,23 +68,29 @@ export function ProjectDetailClient({ project, prevProject, nextProject }: Props
         {/* Left: gallery */}
         <div>
           {/* Main image */}
-          <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-border-subtle mb-3">
+          <button
+            type="button"
+            onClick={() => setLightboxOpen(true)}
+            className="relative w-full aspect-video rounded-xl overflow-hidden border border-border-subtle mb-3 group cursor-zoom-in"
+            aria-label="Open image gallery"
+          >
             <Image
               src={screenshots[activeIndex]}
               alt={`${project.title} screenshot ${activeIndex + 1}`}
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
             />
-          </div>
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
+          </button>
 
           {/* Thumbnails — only show strip if more than 1 screenshot */}
           {screenshots.length > 1 && (
-            <div className="flex gap-3">
+            <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
               {screenshots.map((src, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveIndex(i)}
-                  className={`relative flex-1 aspect-video rounded-lg overflow-hidden border-2 transition-colors ${
+                  className={`relative aspect-video rounded-lg overflow-hidden border-2 transition-colors ${
                     i === activeIndex
                       ? 'border-accent'
                       : 'border-border-subtle hover:border-accent/50'
@@ -153,6 +183,67 @@ export function ProjectDetailClient({ project, prevProject, nextProject }: Props
             </Link>
           ) : (
             <span />
+          )}
+        </div>
+      )}
+
+      {/* Lightbox */}
+      {lightboxOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center"
+          onClick={() => setLightboxOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image gallery"
+        >
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); setLightboxOpen(false) }}
+            className="absolute top-6 right-6 text-white/70 hover:text-white p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors z-10"
+            aria-label="Close gallery"
+          >
+            <X size={22} />
+          </button>
+
+          {screenshots.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); showPrev() }}
+                className="absolute left-4 sm:left-8 text-white/70 hover:text-white p-3 rounded-full bg-white/5 hover:bg-white/10 transition-colors z-10"
+                aria-label="Previous image"
+              >
+                <ChevronLeft size={28} />
+              </button>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); showNext() }}
+                className="absolute right-4 sm:right-8 text-white/70 hover:text-white p-3 rounded-full bg-white/5 hover:bg-white/10 transition-colors z-10"
+                aria-label="Next image"
+              >
+                <ChevronRight size={28} />
+              </button>
+            </>
+          )}
+
+          <div
+            className="relative w-full h-full max-w-7xl max-h-[90vh] mx-4 sm:mx-16"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={screenshots[activeIndex]}
+              alt={`${project.title} screenshot ${activeIndex + 1}`}
+              fill
+              className="object-contain"
+              sizes="100vw"
+              priority
+            />
+          </div>
+
+          {screenshots.length > 1 && (
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 text-xs tracking-wider">
+              {activeIndex + 1} / {screenshots.length}
+            </div>
           )}
         </div>
       )}
