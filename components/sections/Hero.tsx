@@ -90,6 +90,16 @@ export default function Hero() {
             </span>
           </h1>
 
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-2 text-fg-default text-sm sm:text-base">
+            <span className="shimmer-pill text-xs sm:text-sm font-semibold tracking-wide">
+              <span>Frontend Developer</span>
+            </span>
+            <span className="text-fg-faint">and</span>
+            <span className="shimmer-pill shimmer-delay text-xs sm:text-sm font-semibold tracking-wide">
+              <span>AI Engineer</span>
+            </span>
+          </p>
+
           <p className="text-fg-muted text-lg max-w-md leading-relaxed min-h-22">
             <TypewriterText state={typewriter} />
           </p>
