@@ -10,16 +10,16 @@ const TAGLINE = 'I build things for the web - and teach machines to think.';
 
 const socials = [
   {
-    href: 'https://github.com/luizmeneghim',
+    href: 'https://github.com/goofer_g',
     icon: GitHubIcon,
     label: 'GitHub',
   },
   {
-    href: 'https://linkedin.com/in/luizmeneghim',
+    href: 'https://www.linkedin.com/in/lmeneghim/',
     icon: LinkedInIcon,
     label: 'LinkedIn',
   },
-  { href: 'https://twitter.com/luizmeneghim', icon: XIcon, label: 'Twitter' },
+  { href: 'https://twitter.com/Goofer_G', icon: XIcon, label: 'Twitter' },
 ];
 
 const services = [
