@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowDown, ArrowUp } from 'lucide-react'
+import { ArrowDown, ArrowUp, Download } from 'lucide-react'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { experiences, CATEGORY_STYLES } from '@/lib/experience'
 import type { Experience } from '@/lib/experience'
@@ -30,13 +30,24 @@ export default function ExperiencePage() {
       </FadeIn>
 
       <FadeIn delay={0.1}>
-        <button
-          onClick={() => setOrder(order === 'newest' ? 'oldest' : 'newest')}
-          className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-accent transition-colors mb-16"
-        >
-          {order === 'newest' ? <ArrowDown size={14} /> : <ArrowUp size={14} />}
-          {order === 'newest' ? 'Newest first' : 'Oldest first'}
-        </button>
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-16">
+          <button
+            onClick={() => setOrder(order === 'newest' ? 'oldest' : 'newest')}
+            className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-accent transition-colors"
+          >
+            {order === 'newest' ? <ArrowDown size={14} /> : <ArrowUp size={14} />}
+            {order === 'newest' ? 'Newest first' : 'Oldest first'}
+          </button>
+
+          <a
+            href="/luiz-cv.pdf"
+            download
+            className="inline-flex items-center gap-2 px-4 py-2 border border-border-subtle text-slate-400 hover:text-white hover:border-accent rounded-full text-sm transition-colors"
+          >
+            <Download size={14} />
+            Download CV
+          </a>
+        </div>
       </FadeIn>
 
       <ol

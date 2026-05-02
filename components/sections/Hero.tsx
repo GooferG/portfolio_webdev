@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { GitHubCalendar } from 'react-github-calendar';
 import { useTypingEffect } from '@/hooks/useTypingEffect';
 import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/ui/SocialIcons';
+import { ShaderBackground } from '@/components/ui/ShaderBackground';
 
 const TAGLINE = 'I build things for the web — and teach machines to think.';
 
@@ -35,14 +36,11 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Teal ambient glow — top left */}
-      <div
-        className="absolute top-0 left-0 w-[500px] h-[500px] pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(circle, rgba(0,212,170,0.12) 0%, transparent 65%)',
-        }}
-      />
+      {/* Animated shader background */}
+      <ShaderBackground className="opacity-50" />
+
+      {/* Dark overlay — keeps text readable over shader */}
+      <div className="absolute inset-0 bg-bg-primary/50 pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 w-full pt-24 pb-32 flex items-center gap-12">
         {/* Left: text content */}
