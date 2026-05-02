@@ -6,7 +6,7 @@ import { useTypingEffect } from '@/hooks/useTypingEffect';
 import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/ui/SocialIcons';
 import { ShaderBackground } from '@/components/ui/ShaderBackground';
 
-const TAGLINE = 'I build things for the web — and teach machines to think.';
+const TAGLINE = 'I build things for the web - and teach machines to think.';
 
 const socials = [
   {
@@ -38,7 +38,7 @@ export default function Hero() {
       {/* Animated shader background */}
       <ShaderBackground className="opacity-50" />
 
-      {/* Dark overlay — keeps text readable over shader */}
+      {/* Dark overlay - keeps text readable over shader */}
       <div className="absolute inset-0 bg-bg-primary/50 pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 w-full pt-24 pb-32 flex items-center gap-12">
@@ -139,7 +139,7 @@ export default function Hero() {
         </div>
       </div> */}
 
-      {/* Service strip — bottom */}
+      {/* Service strip - bottom */}
       <div className="absolute bottom-0 left-0 right-0 z-20 bg-black/60 backdrop-blur-md border-t border-border-subtle py-3 px-6 overflow-x-auto">
         <div className="max-w-6xl mx-auto flex items-center gap-6 text-sm whitespace-nowrap">
           <span className="text-slate-600 uppercase tracking-widest text-[10px] font-semibold shrink-0">

@@ -15,7 +15,11 @@ export function BlogCard({ post }: { post: BlogPost }) {
         ))}
       </div>
 
-      <h2 className="text-white font-semibold text-lg leading-snug mb-3">{post.title}</h2>
+      <h2 className="text-white font-semibold text-lg leading-snug mb-3">
+        <Link href={`/blog/${post.slug}`} className="hover:text-accent transition-colors">
+          {post.title}
+        </Link>
+      </h2>
       <p className="text-slate-500 text-sm leading-relaxed mb-5">{post.excerpt}</p>
 
       <div className="flex items-center justify-between">

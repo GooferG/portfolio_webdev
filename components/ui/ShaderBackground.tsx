@@ -15,7 +15,7 @@ const FRAG = `
   uniform float u_time;
   uniform vec2 u_mouse;
 
-  // Smooth gradient noise — softer than simplex, better for chrome flow
+  // Smooth gradient noise - softer than simplex, better for chrome flow
   vec2 hash(vec2 p) {
     p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
     return -1.0 + 2.0 * fract(sin(p) * 43758.5453123);
@@ -46,21 +46,21 @@ const FRAG = `
 
     float t = u_time * 0.15;
 
-    // Domain warping — slow, large-scale flow for liquid feel
+    // Domain warping - slow, large-scale flow for liquid feel
     vec2 q = p * 0.8;
     q += 0.6 * vec2(
       noise(q + t + m * 0.3),
       noise(q - t * 0.7 - m * 0.3)
     );
 
-    // Single smooth noise sample, no fbm — keeps it clean and metallic
+    // Single smooth noise sample, no fbm - keeps it clean and metallic
     float n = noise(q * 1.2 + t * 0.5);
 
     // Sharp banding for chrome highlights
     float bands = sin(n * 3.5 + p.x * 0.5 + t) * 0.5 + 0.5;
     bands = pow(bands, 2.5);
 
-    // Chrome palette — mostly desaturated, subtle teal in shadows, white highlights
+    // Chrome palette - mostly desaturated, subtle teal in shadows, white highlights
     vec3 bg        = vec3(0.039, 0.059, 0.118); // #0A0F1E
     vec3 shadow    = vec3(0.05, 0.12, 0.16);    // dark teal-gray
     vec3 midtone   = vec3(0.18, 0.32, 0.36);    // muted teal-gray
@@ -69,7 +69,7 @@ const FRAG = `
     vec3 col = mix(shadow, midtone, smoothstep(0.0, 0.5, n + 0.3));
     col = mix(col, highlight, bands * smoothstep(0.3, 0.9, n + 0.3));
 
-    // Vignette — strong fade so center is brightest, edges blend to bg
+    // Vignette - strong fade so center is brightest, edges blend to bg
     float vig = smoothstep(1.6, 0.2, length(p));
     col = mix(bg, col, vig * 0.5);
 

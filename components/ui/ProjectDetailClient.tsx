@@ -83,7 +83,7 @@ export function ProjectDetailClient({ project, prevProject, nextProject }: Props
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
           </button>
 
-          {/* Thumbnails — only show strip if more than 1 screenshot */}
+          {/* Thumbnails - only show strip if more than 1 screenshot */}
           {screenshots.length > 1 && (
             <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
               {screenshots.map((src, i) => (

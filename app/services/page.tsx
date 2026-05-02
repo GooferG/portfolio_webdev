@@ -15,7 +15,7 @@ const services = [
     icon: Globe,
     title: 'Web Development',
     description:
-      'Custom websites and web applications for businesses of all sizes — from landing pages to full-stack Next.js apps. Fast, responsive, SEO-ready.',
+      'Custom websites and web applications for businesses of all sizes - from landing pages to full-stack Next.js apps. Fast, responsive, SEO-ready.',
     popular: false,
   },
   {
@@ -29,7 +29,7 @@ const services = [
     icon: Brain,
     title: 'AI Consulting & Implementation',
     description:
-      'Strategy and hands-on implementation of AI features into your product — chatbots, document Q&A, semantic search, and more.',
+      'Strategy and hands-on implementation of AI features into your product - chatbots, document Q&A, semantic search, and more.',
     popular: true,
   },
   {
@@ -43,7 +43,7 @@ const services = [
     icon: Wrench,
     title: 'Tech Assistance',
     description:
-      'Hands-on tech help for individuals — smart home setup, AV/movie room wiring, PC builds, general troubleshooting.',
+      'Hands-on tech help for individuals - smart home setup, AV/movie room wiring, PC builds, general troubleshooting.',
     popular: false,
   },
 ]
@@ -58,7 +58,7 @@ export default function ServicesPage() {
           </p>
           <h1 className="text-white text-4xl font-extrabold">Services</h1>
           <p className="text-slate-400 mt-4 max-w-xl mx-auto">
-            From building fast websites to training AI models — I cover the full stack of modern digital work.
+            From building fast websites to training AI models - I cover the full stack of modern digital work.
           </p>
         </div>
       </FadeIn>

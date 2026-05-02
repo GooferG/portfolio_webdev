@@ -14,13 +14,13 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Luiz Meneghim — Frontend Developer & AI Engineer',
+    default: 'Luiz Meneghim - Frontend Developer & AI Engineer',
     template: '%s | Luiz Meneghim',
   },
   description:
-    'I build things for the web — and teach machines to think. Frontend development, AI consulting, LLM engineering, and freelance tech services.',
+    'I build things for the web - and teach machines to think. Frontend development, AI consulting, LLM engineering, and freelance tech services.',
   openGraph: {
-    title: 'Luiz Meneghim — Frontend Developer & AI Engineer',
+    title: 'Luiz Meneghim - Frontend Developer & AI Engineer',
     description:
       'Frontend development, AI consulting, LLM engineering, and freelance tech services.',
     type: 'website',

@@ -84,7 +84,7 @@ export const projects: Project[] = [
     id: 'TMR-sleep-app',
     title: 'Somnicue Sleep App',
     description:
-      'SomniCue uses Targeted Memory Reactivation (TMR) — a neuroscience-backed technique — to control what your brain consolidates while you sleep. Memories, motor patterns, breakthroughs, all on your terms. The app plays specific sounds during sleep to enhance memory consolidation, improve learning, and boost creativity. It’s like a personal trainer for your brain, optimizing your sleep for better performance.',
+      'SomniCue uses Targeted Memory Reactivation (TMR) - a neuroscience-backed technique - to control what your brain consolidates while you sleep. Memories, motor patterns, breakthroughs, all on your terms. The app plays specific sounds during sleep to enhance memory consolidation, improve learning, and boost creativity. It’s like a personal trainer for your brain, optimizing your sleep for better performance.',
     tags: ['Next.js 14', 'Typescript', 'Tailwind CSS 3'],
     category: 'Apps',
     github: 'https://github.com/dweberdev/somnicue',

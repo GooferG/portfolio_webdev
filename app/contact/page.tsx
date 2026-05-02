@@ -137,7 +137,7 @@ export default function ContactPage() {
             <div className="flex flex-col gap-6 text-slate-400 text-sm">
               <p className="leading-relaxed">
                 Whether you need a new website, AI integration, server help, or
-                just want to talk tech — I&apos;m happy to chat. I respond
+                just want to talk tech - I&apos;m happy to chat. I respond
                 within 24 hours.
               </p>
 

@@ -22,7 +22,7 @@ export const experiences: Experience[] = [
     company: 'Somnicue',
     location: 'Remote',
     description:
-      'Helping build SomniCue, an iOS app that uses Targeted Memory Reactivation (TMR) — a neuroscience-backed technique — to play targeted audio cues during sleep for memory consolidation, learning, and creativity. Contributing front-end work, iOS implementation assistance, and hands-on testing alongside the founding developer.',
+      'Helping build SomniCue, an iOS app that uses Targeted Memory Reactivation (TMR) - a neuroscience-backed technique - to play targeted audio cues during sleep for memory consolidation, learning, and creativity. Contributing front-end work, iOS implementation assistance, and hands-on testing alongside the founding developer.',
     stack: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'iOS', 'Testing'],
   },
   {

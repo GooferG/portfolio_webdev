@@ -7,7 +7,7 @@ import { FadeIn } from '@/components/ui/FadeIn';
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Learn more about Luiz Meneghim — web developer and AI engineer.',
+    'Learn more about Luiz Meneghim - web developer and AI engineer.',
 };
 
 const skills = [
@@ -65,23 +65,23 @@ export default function AboutPage() {
           <FadeIn delay={0.1}>
             <div className="flex flex-col gap-5 text-slate-400 leading-relaxed">
               <p>
-                Hey, I&apos;m Luiz — a web developer and AI engineer. I build
+                Hey, I&apos;m Luiz - a web developer and AI engineer. I build
                 modern web applications and help businesses integrate AI into
                 their workflows. I care about clean code, great user
                 experiences, and shipping things that actually work.
               </p>
               <p>
-                On the web side, I focus on React and Next.js applications —
+                On the web side, I focus on React and Next.js applications -
                 from small business landing pages to full-stack web apps. On the
                 AI side, I work with LLMs, RAG pipelines, fine-tuning, and API
                 integrations to help teams move from &quot;AI curious&quot; to
                 &quot;AI productive.&quot;
               </p>
               <p>
-                When I&apos;m not writing code, I&apos;m setting up home labs,
-                wiring up AV systems, or building out smart home setups. I like
-                making technology work for people — whether that&apos;s a React
-                app or a movie room.
+                When I&apos;m not writing code, I&apos;m gaming, making music,
+                editing videos, or hanging out with friends. I like building
+                things that work, whether that&apos;s a React app or a beat that
+                actually slaps.
               </p>
             </div>
           </FadeIn>

@@ -24,7 +24,7 @@ export default function ExperiencePage() {
         </h1>
         <p className="text-slate-400 text-lg max-w-xl leading-relaxed mb-12">
           Nine-plus years across web development, security analysis, and
-          technical support — laid out chronologically. Bilingual English and
+          technical support - laid out chronologically. Bilingual English and
           Portuguese, working out of Arizona.
         </p>
       </FadeIn>
@@ -121,7 +121,7 @@ function TimelineItem({ entry, index }: { entry: Experience; index: number }) {
               {entry.title}
             </h2>
             <p className="text-slate-500 italic text-sm md:text-base mb-5">
-              {entry.company} — {entry.location}
+              {entry.company} - {entry.location}
             </p>
 
             {/* Description */}
@@ -153,7 +153,7 @@ function TimelineItem({ entry, index }: { entry: Experience; index: number }) {
           </div>
         </div>
 
-        {/* Counter dot — positioned on the line */}
+        {/* Counter dot - positioned on the line */}
         <span
           className={`counter-num absolute top-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-bg-card border-2 ${cat.dot.replace(
             'bg-',

@@ -24,7 +24,7 @@ export default function BlogPage() {
       </FadeIn>
 
       {posts.length === 0 ? (
-        <p className="text-slate-500">No posts yet — check back soon.</p>
+        <p className="text-slate-500">No posts yet - check back soon.</p>
       ) : (
         <div className="flex flex-col gap-6">
           {posts.map((post, i) => (

@@ -17,7 +17,7 @@ export function FreelanceCTA() {
               Looking for a developer or AI engineer?
             </p>
             <p className="text-slate-400 text-sm mt-1">
-              I take on freelance and contract work — let&apos;s build something together.
+              I take on freelance and contract work - let&apos;s build something together.
             </p>
           </div>
           <Link
