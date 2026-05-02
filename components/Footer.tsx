@@ -8,8 +8,8 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border-subtle bg-[#060b12] py-8 mt-20">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+    <footer className="border-t border-border-subtle bg-bg-strong py-8 mt-20">
+      <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-fg-subtle">
         <span>© 2026 Luiz Meneghim</span>
 
         <div className="flex items-center gap-4">
@@ -20,7 +20,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="text-slate-500 hover:text-accent transition-colors"
+              className="text-fg-subtle hover:text-accent transition-colors"
             >
               <Icon size={18} />
             </a>

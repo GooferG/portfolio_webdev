@@ -2,12 +2,56 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-bg-primary: #0A0F1E;
-  --color-bg-card: #0d1f2e;
-  --color-border-subtle: #1e3a4a;
-  --color-accent: #00D4AA;
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-strong: var(--bg-strong);
+  --color-border-subtle: var(--border-subtle);
+  --color-accent: var(--accent);
+
+  --color-fg-strong: var(--fg-strong);
+  --color-fg-default: var(--fg-default);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-fg-faint: var(--fg-faint);
 
   --font-sans: var(--font-inter), system-ui, sans-serif;
+}
+
+:root,
+[data-theme="dark"] {
+  --bg-primary: #0A0F1E;
+  --bg-card: #0d1f2e;
+  --bg-strong: #060b12;
+  --border-subtle: #1e3a4a;
+  --accent: #00D4AA;
+
+  --fg-strong: #ffffff;
+  --fg-default: #cbd5e1;
+  --fg-muted: #94a3b8;
+  --fg-subtle: #64748b;
+  --fg-faint: #475569;
+
+  --overlay-on-bg: rgba(10, 15, 30, 0.5);
+  --overlay-strip: rgba(0, 0, 0, 0.6);
+  --nav-scrolled: rgba(10, 15, 30, 0.8);
+}
+
+[data-theme="light"] {
+  --bg-primary: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --bg-strong: #EEF2F7;
+  --border-subtle: #E2E8F0;
+  --accent: #00B894;
+
+  --fg-strong: #0f172a;
+  --fg-default: #334155;
+  --fg-muted: #475569;
+  --fg-subtle: #64748b;
+  --fg-faint: #94a3b8;
+
+  --overlay-on-bg: rgba(248, 250, 252, 0.6);
+  --overlay-strip: rgba(255, 255, 255, 0.7);
+  --nav-scrolled: rgba(248, 250, 252, 0.85);
 }
 
 @layer base {
@@ -16,23 +60,27 @@
   }
 
   body {
-    background-color: var(--color-bg-primary);
-    color: theme(--color-slate-300, #cbd5e1);
+    background-color: var(--bg-primary);
+    color: var(--fg-default);
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--color-bg-primary);
+    background: var(--bg-primary);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--color-border-subtle);
+    background: var(--border-subtle);
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-accent);
+    background: var(--accent);
   }
+}
+
+[data-theme="light"] .shader-bg {
+  opacity: 0.15;
+  filter: invert(1) hue-rotate(180deg);
 }

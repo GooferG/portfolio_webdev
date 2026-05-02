@@ -8,22 +8,22 @@ export function BlogCard({ post }: { post: BlogPost }) {
         {post.tags.map(tag => (
           <span
             key={tag}
-            className="text-[11px] px-2.5 py-1 bg-bg-primary border border-border-subtle rounded-full text-slate-500"
+            className="text-[11px] px-2.5 py-1 bg-bg-primary border border-border-subtle rounded-full text-fg-subtle"
           >
             {tag}
           </span>
         ))}
       </div>
 
-      <h2 className="text-white font-semibold text-lg leading-snug mb-3">
+      <h2 className="text-fg-strong font-semibold text-lg leading-snug mb-3">
         <Link href={`/blog/${post.slug}`} className="hover:text-accent transition-colors">
           {post.title}
         </Link>
       </h2>
-      <p className="text-slate-500 text-sm leading-relaxed mb-5">{post.excerpt}</p>
+      <p className="text-fg-subtle text-sm leading-relaxed mb-5">{post.excerpt}</p>
 
       <div className="flex items-center justify-between">
-        <span className="text-slate-600 text-xs">
+        <span className="text-fg-faint text-xs">
           {new Date(post.date).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'short',

@@ -2,11 +2,15 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useTypingEffect } from '@/hooks/useTypingEffect';
+import { useRotatingTypewriter } from '@/hooks/useTypingEffect';
 import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/ui/SocialIcons';
 import { ShaderBackground } from '@/components/ui/ShaderBackground';
 
-const TAGLINE = 'I build things for the web - and teach machines to think.';
+const TAGLINES = [
+  'I build things for the web — and teach machines to think.',
+  'I ship React + Next.js apps that load fast and feel sharp.',
+  'I wire LLMs into real products that solve real problems.',
+];
 
 const socials = [
   {
@@ -31,15 +35,18 @@ const services = [
 ];
 
 export default function Hero() {
-  const displayedTagline = useTypingEffect(TAGLINE);
+  const displayedTagline = useRotatingTypewriter(TAGLINES);
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Animated shader background */}
       <ShaderBackground className="opacity-50" />
 
-      {/* Dark overlay - keeps text readable over shader */}
-      <div className="absolute inset-0 bg-bg-primary/50 pointer-events-none" />
+      {/* Overlay - keeps text readable over shader */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ backgroundColor: 'var(--overlay-on-bg)' }}
+      />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 w-full pt-24 pb-32 flex items-center gap-12">
         {/* Left: text content */}
@@ -51,13 +58,13 @@ export default function Hero() {
             </span>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] tracking-tight">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-fg-strong leading-[1.05] tracking-tight">
             Luiz
             <br />
             Meneghim
           </h1>
 
-          <p className="text-slate-400 text-lg max-w-md leading-relaxed min-h-[56px]">
+          <p className="text-fg-muted text-lg max-w-md leading-relaxed min-h-[56px]">
             {displayedTagline}
             <span className="inline-block w-[2px] h-5 bg-accent ml-1 align-middle animate-pulse" />
           </p>
@@ -71,7 +78,7 @@ export default function Hero() {
             </Link>
             <Link
               href="/projects"
-              className="px-7 py-3 border border-border-subtle text-slate-400 rounded-full hover:border-accent hover:text-white transition-colors text-sm"
+              className="px-7 py-3 border border-border-subtle text-fg-muted rounded-full hover:border-accent hover:text-fg-strong transition-colors text-sm"
             >
               My Work
             </Link>
@@ -85,7 +92,7 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-9 h-9 flex items-center justify-center rounded-lg bg-bg-card border border-border-subtle text-slate-500 hover:text-accent hover:border-accent transition-colors"
+                className="w-9 h-9 flex items-center justify-center rounded-lg bg-bg-card border border-border-subtle text-fg-subtle hover:text-accent hover:border-accent transition-colors"
               >
                 <Icon size={16} />
               </a>
@@ -140,13 +147,16 @@ export default function Hero() {
       </div> */}
 
       {/* Service strip - bottom */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 bg-black/60 backdrop-blur-md border-t border-border-subtle py-3 px-6 overflow-x-auto">
+      <div
+        className="absolute bottom-0 left-0 right-0 z-20 backdrop-blur-md border-t border-border-subtle py-3 px-6 overflow-x-auto"
+        style={{ backgroundColor: 'var(--overlay-strip)' }}
+      >
         <div className="max-w-6xl mx-auto flex items-center gap-6 text-sm whitespace-nowrap">
-          <span className="text-slate-600 uppercase tracking-widest text-[10px] font-semibold shrink-0">
+          <span className="text-fg-faint uppercase tracking-widest text-[10px] font-semibold shrink-0">
             I offer
           </span>
           {services.map((s, i) => (
-            <span key={s} className="flex items-center gap-6 text-slate-400">
+            <span key={s} className="flex items-center gap-6 text-fg-muted">
               {i > 0 && (
                 <span className="text-border-subtle mr-[-18px]">·</span>
               )}

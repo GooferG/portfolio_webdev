@@ -14,11 +14,11 @@ export function FeaturedProjects() {
             <p className="text-accent text-xs font-semibold tracking-[3px] uppercase mb-3">
               Selected Work
             </p>
-            <h2 className="text-white text-3xl font-extrabold">Featured Projects</h2>
+            <h2 className="text-fg-strong text-3xl font-extrabold">Featured Projects</h2>
           </div>
           <Link
             href="/projects"
-            className="text-slate-400 hover:text-white text-sm transition-colors hidden sm:block"
+            className="text-fg-muted hover:text-fg-strong text-sm transition-colors hidden sm:block"
           >
             View all →
           </Link>
@@ -34,7 +34,7 @@ export function FeaturedProjects() {
       </div>
 
       <div className="mt-8 sm:hidden">
-        <Link href="/projects" className="text-slate-400 hover:text-white text-sm transition-colors">
+        <Link href="/projects" className="text-fg-muted hover:text-fg-strong text-sm transition-colors">
           View all projects →
         </Link>
       </div>

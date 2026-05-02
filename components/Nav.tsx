@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
+import { ThemeToggle } from '@/components/ui/ThemeToggle'
 
 const links = [
   { href: '/', label: 'Home' },
@@ -39,7 +40,7 @@ export default function Nav() {
       >
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="text-accent font-extrabold text-xl tracking-tight">
-            LM<span className="text-white">.</span>
+            LM<span className="text-fg-strong">.</span>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-8">
@@ -49,8 +50,8 @@ export default function Nav() {
                 href={href}
                 className={`text-sm transition-colors duration-200 ${
                   pathname === href
-                    ? 'text-white font-medium'
-                    : 'text-slate-400 hover:text-white'
+                    ? 'text-fg-strong font-medium'
+                    : 'text-fg-muted hover:text-fg-strong'
                 }`}
               >
                 {label}
@@ -58,7 +59,8 @@ export default function Nav() {
             ))}
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-3">
+            <ThemeToggle />
             <Link
               href="/contact"
               className="px-5 py-2 bg-accent text-bg-primary text-sm font-bold rounded-full hover:bg-accent/90 transition-colors"
@@ -67,13 +69,16 @@ export default function Nav() {
             </Link>
           </div>
 
-          <button
-            className="lg:hidden text-slate-400 hover:text-white"
-            onClick={() => setOpen(o => !o)}
-            aria-label="Toggle menu"
-          >
-            {open ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          <div className="lg:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              className="text-fg-muted hover:text-fg-strong"
+              onClick={() => setOpen(o => !o)}
+              aria-label="Toggle menu"
+            >
+              {open ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -84,7 +89,7 @@ export default function Nav() {
               key={href}
               href={href}
               className={`text-2xl font-semibold transition-colors ${
-                pathname === href ? 'text-accent' : 'text-white hover:text-accent'
+                pathname === href ? 'text-accent' : 'text-fg-strong hover:text-accent'
               }`}
               onClick={() => setOpen(false)}
             >

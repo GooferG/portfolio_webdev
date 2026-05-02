@@ -13,10 +13,10 @@ export function FreelanceCTA() {
                 Available for work
               </span>
             </div>
-            <p className="text-white text-xl font-bold">
+            <p className="text-fg-strong text-xl font-bold">
               Looking for a developer or AI engineer?
             </p>
-            <p className="text-slate-400 text-sm mt-1">
+            <p className="text-fg-muted text-sm mt-1">
               I take on freelance and contract work - let&apos;s build something together.
             </p>
           </div>

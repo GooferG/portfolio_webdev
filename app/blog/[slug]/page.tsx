@@ -29,7 +29,7 @@ export default async function BlogPostPage({ params }: Props) {
     <div className="max-w-3xl mx-auto px-6 pt-32 pb-24">
       <Link
         href="/blog"
-        className="inline-flex items-center gap-2 text-slate-500 hover:text-accent text-sm mb-12 transition-colors"
+        className="inline-flex items-center gap-2 text-fg-subtle hover:text-accent text-sm mb-12 transition-colors"
       >
         <ArrowLeft size={14} />
         Back to Blog
@@ -40,18 +40,18 @@ export default async function BlogPostPage({ params }: Props) {
           {frontmatter.tags.map(tag => (
             <span
               key={tag}
-              className="text-[11px] px-2.5 py-1 bg-bg-card border border-border-subtle rounded-full text-slate-500"
+              className="text-[11px] px-2.5 py-1 bg-bg-card border border-border-subtle rounded-full text-fg-subtle"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        <h1 className="text-white text-3xl sm:text-4xl font-extrabold leading-tight mb-4">
+        <h1 className="text-fg-strong text-3xl sm:text-4xl font-extrabold leading-tight mb-4">
           {frontmatter.title}
         </h1>
 
-        <p className="text-slate-500 text-sm">
+        <p className="text-fg-subtle text-sm">
           {new Date(frontmatter.date).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
@@ -61,14 +61,14 @@ export default async function BlogPostPage({ params }: Props) {
         </p>
       </header>
 
-      <div className="prose prose-invert prose-slate max-w-none prose-headings:text-white prose-a:text-accent prose-code:text-accent prose-pre:bg-bg-card prose-pre:border prose-pre:border-border-subtle">
+      <div className="prose prose-invert prose-slate max-w-none prose-headings:text-fg-strong prose-a:text-accent prose-code:text-accent prose-pre:bg-bg-card prose-pre:border prose-pre:border-border-subtle">
         <MDXRemote source={source} />
       </div>
 
       <div className="mt-16 pt-8 border-t border-border-subtle">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-slate-500 hover:text-accent text-sm transition-colors"
+          className="inline-flex items-center gap-2 text-fg-subtle hover:text-accent text-sm transition-colors"
         >
           <ArrowLeft size={14} />
           Back to Blog

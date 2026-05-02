@@ -43,18 +43,18 @@ export function ProjectCard({ project }: { project: Project }) {
       </div>
 
       <div className="p-5 flex flex-col flex-1">
-        <h3 className="text-white font-semibold text-base mb-2">
+        <h3 className="text-fg-strong font-semibold text-base mb-2">
           <Link href={detailHref} className="hover:text-accent transition-colors">
             {project.title}
           </Link>
         </h3>
-        <p className="text-slate-500 text-sm leading-relaxed mb-4 flex-1 line-clamp-4">{project.description}</p>
+        <p className="text-fg-subtle text-sm leading-relaxed mb-4 flex-1 line-clamp-4">{project.description}</p>
 
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map(tag => (
             <span
               key={tag}
-              className="text-xs px-2 py-1 bg-bg-primary border border-border-subtle rounded text-slate-400"
+              className="text-xs px-2 py-1 bg-bg-primary border border-border-subtle rounded text-fg-muted"
             >
               {tag}
             </span>
@@ -67,7 +67,7 @@ export function ProjectCard({ project }: { project: Project }) {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white border border-border-subtle rounded-lg px-3 py-1.5 transition-colors"
+              className="flex items-center gap-1.5 text-xs text-fg-muted hover:text-fg-strong border border-border-subtle rounded-lg px-3 py-1.5 transition-colors"
             >
               <GitHubIcon size={13} />
               GitHub

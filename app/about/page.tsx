@@ -36,7 +36,7 @@ export default function AboutPage() {
         <p className="text-accent text-xs font-semibold tracking-[3px] uppercase mb-3">
           Who I Am
         </p>
-        <h1 className="text-white text-4xl font-extrabold mb-16">About Me</h1>
+        <h1 className="text-fg-strong text-4xl font-extrabold mb-16">About Me</h1>
       </FadeIn>
 
       <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -63,7 +63,7 @@ export default function AboutPage() {
 
         <div className="flex flex-col gap-8">
           <FadeIn delay={0.1}>
-            <div className="flex flex-col gap-5 text-slate-400 leading-relaxed">
+            <div className="flex flex-col gap-5 text-fg-muted leading-relaxed">
               <p>
                 Hey, I&apos;m Luiz - a web developer and AI engineer. I build
                 modern web applications and help businesses integrate AI into
@@ -95,7 +95,7 @@ export default function AboutPage() {
               <a
                 href="/luiz-cv.pdf"
                 download
-                className="flex items-center gap-2 px-4 py-2 border border-border-subtle text-slate-400 hover:text-white hover:border-accent rounded-full text-sm transition-colors"
+                className="flex items-center gap-2 px-4 py-2 border border-border-subtle text-fg-muted hover:text-fg-strong hover:border-accent rounded-full text-sm transition-colors"
               >
                 <Download size={14} />
                 Download CV
@@ -105,14 +105,14 @@ export default function AboutPage() {
 
           <FadeIn delay={0.2}>
             <div>
-              <h2 className="text-white font-semibold text-base mb-4">
+              <h2 className="text-fg-strong font-semibold text-base mb-4">
                 Tech Stack
               </h2>
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1.5 bg-bg-card border border-border-subtle rounded-lg text-slate-400 text-sm hover:border-accent/50 hover:text-white transition-colors"
+                    className="px-3 py-1.5 bg-bg-card border border-border-subtle rounded-lg text-fg-muted text-sm hover:border-accent/50 hover:text-fg-strong transition-colors"
                   >
                     {skill}
                   </span>

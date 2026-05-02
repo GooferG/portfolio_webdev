@@ -19,7 +19,7 @@ export default function ProjectsPage() {
         <p className="text-accent text-xs font-semibold tracking-[3px] uppercase mb-3">
           My Work
         </p>
-        <h1 className="text-white text-4xl font-extrabold mb-10">Projects</h1>
+        <h1 className="text-fg-strong text-4xl font-extrabold mb-10">Projects</h1>
       </FadeIn>
 
       <FadeIn delay={0.05}>
@@ -31,7 +31,7 @@ export default function ProjectsPage() {
               className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${
                 active === cat
                   ? 'bg-accent text-bg-primary'
-                  : 'border border-border-subtle text-slate-400 hover:border-accent/50 hover:text-white'
+                  : 'border border-border-subtle text-fg-muted hover:border-accent/50 hover:text-fg-strong'
               }`}
             >
               {cat}
@@ -49,7 +49,7 @@ export default function ProjectsPage() {
       </div>
 
       {filtered.length === 0 && (
-        <p className="text-slate-500 text-center py-16">No projects in this category yet.</p>
+        <p className="text-fg-subtle text-center py-16">No projects in this category yet.</p>
       )}
     </div>
   )

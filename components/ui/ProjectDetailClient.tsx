@@ -46,7 +46,7 @@ export function ProjectDetailClient({ project, prevProject, nextProject }: Props
       {/* Back */}
       <Link
         href="/projects"
-        className="inline-flex items-center gap-2 text-slate-500 hover:text-accent text-sm mb-12 transition-colors"
+        className="inline-flex items-center gap-2 text-fg-subtle hover:text-accent text-sm mb-12 transition-colors"
       >
         <ArrowLeft size={14} />
         Back to Projects
@@ -57,7 +57,7 @@ export function ProjectDetailClient({ project, prevProject, nextProject }: Props
         <span className="text-accent text-xs font-semibold tracking-[3px] uppercase mb-3 inline-block">
           {project.category}
         </span>
-        <h1 className="text-white text-3xl sm:text-4xl font-extrabold leading-tight">
+        <h1 className="text-fg-strong text-3xl sm:text-4xl font-extrabold leading-tight">
           {project.title}
         </h1>
       </div>
@@ -111,20 +111,20 @@ export function ProjectDetailClient({ project, prevProject, nextProject }: Props
         {/* Right: info */}
         <div className="flex flex-col gap-6">
           <div>
-            <p className="text-slate-400 text-sm leading-relaxed">
+            <p className="text-fg-muted text-sm leading-relaxed">
               {project.longDescription ?? project.description}
             </p>
           </div>
 
           <div>
-            <p className="text-slate-500 text-xs font-semibold tracking-[2px] uppercase mb-3">
+            <p className="text-fg-subtle text-xs font-semibold tracking-[2px] uppercase mb-3">
               Tech Stack
             </p>
             <div className="flex flex-wrap gap-2">
               {project.tags.map(tag => (
                 <span
                   key={tag}
-                  className="text-xs px-2.5 py-1 bg-bg-primary border border-border-subtle rounded text-slate-400"
+                  className="text-xs px-2.5 py-1 bg-bg-primary border border-border-subtle rounded text-fg-muted"
                 >
                   {tag}
                 </span>
@@ -138,7 +138,7 @@ export function ProjectDetailClient({ project, prevProject, nextProject }: Props
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white border border-border-subtle rounded-lg px-4 py-2 transition-colors"
+                className="flex items-center gap-1.5 text-xs text-fg-muted hover:text-fg-strong border border-border-subtle rounded-lg px-4 py-2 transition-colors"
               >
                 <GitHubIcon size={13} />
                 GitHub
@@ -165,7 +165,7 @@ export function ProjectDetailClient({ project, prevProject, nextProject }: Props
           {prevProject ? (
             <Link
               href={`/projects/${prevProject.id}`}
-              className="flex items-center gap-2 text-slate-500 hover:text-accent text-sm transition-colors"
+              className="flex items-center gap-2 text-fg-subtle hover:text-accent text-sm transition-colors"
             >
               <ChevronLeft size={14} />
               {prevProject.title}
@@ -176,7 +176,7 @@ export function ProjectDetailClient({ project, prevProject, nextProject }: Props
           {nextProject ? (
             <Link
               href={`/projects/${nextProject.id}`}
-              className="flex items-center gap-2 text-slate-500 hover:text-accent text-sm transition-colors"
+              className="flex items-center gap-2 text-fg-subtle hover:text-accent text-sm transition-colors"
             >
               {nextProject.title}
               <ChevronRight size={14} />

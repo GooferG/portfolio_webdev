@@ -27,8 +27,8 @@ export function ServiceCard({ icon: Icon, title, description, popular, delay = 0
         <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-accent/10 border border-accent/20 mb-5">
           <Icon size={20} className="text-accent" />
         </div>
-        <h3 className="text-white font-semibold text-base mb-2">{title}</h3>
-        <p className="text-slate-500 text-sm leading-relaxed">{description}</p>
+        <h3 className="text-fg-strong font-semibold text-base mb-2">{title}</h3>
+        <p className="text-fg-subtle text-sm leading-relaxed">{description}</p>
       </div>
     </FadeIn>
   )

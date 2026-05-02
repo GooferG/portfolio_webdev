@@ -17,14 +17,14 @@ export default function BlogPage() {
         <p className="text-accent text-xs font-semibold tracking-[3px] uppercase mb-3">
           Writing
         </p>
-        <h1 className="text-white text-4xl font-extrabold mb-4">Blog</h1>
-        <p className="text-slate-400 mb-16">
+        <h1 className="text-fg-strong text-4xl font-extrabold mb-4">Blog</h1>
+        <p className="text-fg-muted mb-16">
           Thoughts on web development, AI engineering, and the occasional build log.
         </p>
       </FadeIn>
 
       {posts.length === 0 ? (
-        <p className="text-slate-500">No posts yet - check back soon.</p>
+        <p className="text-fg-subtle">No posts yet - check back soon.</p>
       ) : (
         <div className="flex flex-col gap-6">
           {posts.map((post, i) => (

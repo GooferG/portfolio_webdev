@@ -37,7 +37,7 @@ export default function ContactPage() {
         <p className="text-accent text-xs font-semibold tracking-[3px] uppercase mb-3">
           Let&apos;s Talk
         </p>
-        <h1 className="text-white text-4xl font-extrabold mb-16">Contact</h1>
+        <h1 className="text-fg-strong text-4xl font-extrabold mb-16">Contact</h1>
       </FadeIn>
 
       <div className="grid lg:grid-cols-2 gap-16">
@@ -46,7 +46,7 @@ export default function ContactPage() {
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div className="grid sm:grid-cols-2 gap-5">
               <div className="flex flex-col gap-2">
-                <label className="text-slate-400 text-sm" htmlFor="name">
+                <label className="text-fg-muted text-sm" htmlFor="name">
                   Name
                 </label>
                 <input
@@ -55,11 +55,11 @@ export default function ContactPage() {
                   type="text"
                   required
                   placeholder="Your name"
-                  className="bg-bg-card border border-border-subtle rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-accent transition-colors"
+                  className="bg-bg-card border border-border-subtle rounded-xl px-4 py-3 text-fg-strong text-sm placeholder:text-fg-faint focus:outline-none focus:border-accent transition-colors"
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="text-slate-400 text-sm" htmlFor="email">
+                <label className="text-fg-muted text-sm" htmlFor="email">
                   Email
                 </label>
                 <input
@@ -68,13 +68,13 @@ export default function ContactPage() {
                   type="email"
                   required
                   placeholder="you@example.com"
-                  className="bg-bg-card border border-border-subtle rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-accent transition-colors"
+                  className="bg-bg-card border border-border-subtle rounded-xl px-4 py-3 text-fg-strong text-sm placeholder:text-fg-faint focus:outline-none focus:border-accent transition-colors"
                 />
               </div>
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-slate-400 text-sm" htmlFor="subject">
+              <label className="text-fg-muted text-sm" htmlFor="subject">
                 Subject
               </label>
               <input
@@ -83,12 +83,12 @@ export default function ContactPage() {
                 type="text"
                 required
                 placeholder="What's this about?"
-                className="bg-bg-card border border-border-subtle rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-accent transition-colors"
+                className="bg-bg-card border border-border-subtle rounded-xl px-4 py-3 text-fg-strong text-sm placeholder:text-fg-faint focus:outline-none focus:border-accent transition-colors"
               />
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-slate-400 text-sm" htmlFor="message">
+              <label className="text-fg-muted text-sm" htmlFor="message">
                 Message
               </label>
               <textarea
@@ -97,7 +97,7 @@ export default function ContactPage() {
                 required
                 rows={6}
                 placeholder="Tell me about your project..."
-                className="bg-bg-card border border-border-subtle rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-accent transition-colors resize-none"
+                className="bg-bg-card border border-border-subtle rounded-xl px-4 py-3 text-fg-strong text-sm placeholder:text-fg-faint focus:outline-none focus:border-accent transition-colors resize-none"
               />
             </div>
 
@@ -134,7 +134,7 @@ export default function ContactPage() {
               </span>
             </div>
 
-            <div className="flex flex-col gap-6 text-slate-400 text-sm">
+            <div className="flex flex-col gap-6 text-fg-muted text-sm">
               <p className="leading-relaxed">
                 Whether you need a new website, AI integration, server help, or
                 just want to talk tech - I&apos;m happy to chat. I respond
