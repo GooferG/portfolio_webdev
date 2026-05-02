@@ -143,11 +143,11 @@ export default function ContactPage() {
 
               <div className="flex flex-col gap-4">
                 <a
-                  href="mailto:luiz@meneghim.dev"
+                  href="mailto:luimeneghim@gmail.com"
                   className="flex items-center gap-3 hover:text-accent transition-colors"
                 >
                   <Mail size={16} />
-                  luiz@meneghim.dev
+                  luimeneghim@gmail.com
                 </a>
                 <div className="flex items-center gap-3">
                   <MapPin size={16} />
