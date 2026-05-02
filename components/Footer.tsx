@@ -1,10 +1,14 @@
-import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/ui/SocialIcons'
+import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/ui/SocialIcons';
 
 const socials = [
-  { href: 'https://github.com/luizmeneghim', icon: GitHubIcon, label: 'GitHub' },
-  { href: 'https://linkedin.com/in/luizmeneghim', icon: LinkedInIcon, label: 'LinkedIn' },
-  { href: 'https://twitter.com/luizmeneghim', icon: XIcon, label: 'Twitter' },
-]
+  { href: 'https://github.com/goofer_g', icon: GitHubIcon, label: 'GitHub' },
+  {
+    href: 'https://www.linkedin.com/in/lmeneghim/',
+    icon: LinkedInIcon,
+    label: 'LinkedIn',
+  },
+  { href: 'https://x.com/goofer_g', icon: XIcon, label: 'Twitter' },
+];
 
 export default function Footer() {
   return (
@@ -30,5 +34,5 @@ export default function Footer() {
         <span>Built with Next.js + Tailwind</span>
       </div>
     </footer>
-  )
+  );
 }

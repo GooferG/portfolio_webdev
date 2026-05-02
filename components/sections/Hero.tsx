@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useRotatingTypewriter } from '@/hooks/useTypingEffect';
 import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/ui/SocialIcons';
 import { ShaderBackground } from '@/components/ui/ShaderBackground';
+import { TypewriterText } from '@/components/ui/TypewriterText';
 
 const TAGLINES = [
   'I build things for the web — and teach machines to think.',
@@ -34,8 +35,27 @@ const services = [
   'Tech Assistance',
 ];
 
+function DottedI() {
+  return (
+    <span className="relative inline-block">
+      {'ı'}
+      <span
+        aria-hidden="true"
+        className="absolute rounded-full bg-accent"
+        style={{
+          width: '0.18em',
+          height: '0.18em',
+          left: '50%',
+          top: '0.12em',
+          transform: 'translateX(-50%)',
+        }}
+      />
+    </span>
+  );
+}
+
 export default function Hero() {
-  const displayedTagline = useRotatingTypewriter(TAGLINES);
+  const typewriter = useRotatingTypewriter(TAGLINES);
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -52,21 +72,26 @@ export default function Hero() {
         {/* Left: text content */}
         <div className="flex-1 flex flex-col gap-6">
           <div className="flex items-center gap-2 w-fit">
-            <span className="w-2 h-2 rounded-full bg-accent block" />
+            <span className="w-2 h-2 rounded-full bg-fg-strong block" />
             <span className="text-accent text-xs font-semibold tracking-[3px] uppercase">
               Hello, I am
             </span>
           </div>
 
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-fg-strong leading-[1.05] tracking-tight">
-            Luiz
+            <span className="inline-flex items-baseline">
+              Lu
+              <DottedI />z
+            </span>
             <br />
-            Meneghim
+            <span className="inline-flex items-baseline">
+              Menegh
+              <DottedI />m
+            </span>
           </h1>
 
-          <p className="text-fg-muted text-lg max-w-md leading-relaxed min-h-[56px]">
-            {displayedTagline}
-            <span className="inline-block w-[2px] h-5 bg-accent ml-1 align-middle animate-pulse" />
+          <p className="text-fg-muted text-lg max-w-md leading-relaxed min-h-22">
+            <TypewriterText state={typewriter} />
           </p>
 
           <div className="flex items-center gap-4 mt-2">
