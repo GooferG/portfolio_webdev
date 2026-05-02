@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { GitHubCalendar } from 'react-github-calendar';
 import { useTypingEffect } from '@/hooks/useTypingEffect';
 import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/ui/SocialIcons';
 import { ShaderBackground } from '@/components/ui/ShaderBackground';
@@ -94,8 +93,14 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right: photo with fade */}
-        <div className="hidden md:block relative flex-shrink-0 w-[420px] h-[560px]">
+        {/* Right: photo with all edges faded */}
+        <div
+          className="hidden md:block relative flex-shrink-0 w-[420px] h-[560px]"
+          style={{
+            filter:
+              'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 30px rgba(0, 212, 170, 0.15))',
+          }}
+        >
           <Image
             src="/images/luiz-meneghim-hero.jpg"
             alt="Luiz Meneghim"
@@ -104,16 +109,9 @@ export default function Hero() {
             className="object-cover object-top rounded-2xl"
             style={{
               maskImage:
-                'linear-gradient(to left, black 40%, transparent 100%)',
+                'radial-gradient(ellipse 85% 90% at 55% 50%, black 50%, transparent 100%)',
               WebkitMaskImage:
-                'linear-gradient(to left, black 40%, transparent 100%)',
-            }}
-          />
-          <div
-            className="absolute inset-0 pointer-events-none rounded-2xl"
-            style={{
-              background:
-                'linear-gradient(to right, #0A0F1E 0%, transparent 35%)',
+                'radial-gradient(ellipse 85% 90% at 55% 50%, black 50%, transparent 100%)',
             }}
           />
         </div>
