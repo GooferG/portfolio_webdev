@@ -36,6 +36,20 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    id: 'tanner-metro-site',
+    title: 'Tanner Metro — Voice Actor & Sound Designer',
+    description:
+      'A portfolio and booking site for a Phoenix-based voice actor and sound designer. Built with Next.js and Tailwind CSS, the site showcases voice demo reels, studio capabilities, and sound design services across trailers, game audio, sonic branding, podcasts, UI/product, and field/foley. Features a custom typographic hero, animated sections, and an embedded contact flow, deployed on Vercel.',
+    tags: ['Next.js', 'Tailwind', 'Vercel', 'TypeScript', 'Framer Motion'],
+    category: 'Web',
+    github: 'https://github.com/GooferG/tannermetrosite',
+    live: 'https://tannermetrosite.vercel.app/',
+    image: '/images/projects/tannermetro/hero.jpg',
+    imagePosition: 'center 0%',
+    screenshots: ['/images/projects/tannermetro/hero.jpg'],
+    featured: true,
+  },
+  {
     id: 'streamer-fullstack-website',
     title: 'Streamer Fullstack Website',
     description:
@@ -65,9 +79,11 @@ export const projects: Project[] = [
     category: 'Apps',
     github: 'https://github.com/GooferG/leadgenerator_ai',
     live: 'https://leadgenerator-ai.vercel.app/',
-    image: '/images/projects/lead-gen/hook-dashboard-dark.png',
-    imagePosition: 'center 80%',
+    image: '/images/projects/lead-gen/hook-home-dark.png',
+    imagePosition: 'center top',
     screenshots: [
+      '/images/projects/lead-gen/hook-home-dark.png',
+      '/images/projects/lead-gen/hook-home-light.png',
       '/images/projects/lead-gen/hook-dashboard-dark.png',
       '/images/projects/lead-gen/hook-dashboard-light.png',
       '/images/projects/lead-gen/hook-lead-dark.png',

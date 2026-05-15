@@ -1,15 +1,16 @@
-import type { Metadata } from 'next'
-import { getAllPosts } from '@/lib/blog'
-import { BlogCard } from '@/components/ui/BlogCard'
-import { FadeIn } from '@/components/ui/FadeIn'
+import type { Metadata } from 'next';
+import { getAllPosts } from '@/lib/blog';
+import { BlogCard } from '@/components/ui/BlogCard';
+import { FadeIn } from '@/components/ui/FadeIn';
 
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'Articles on web development, AI, LLMs, and tech by Luiz Meneghim.',
-}
+  description:
+    'Articles on web development, AI, LLMs, and tech by Luiz Meneghim.',
+};
 
 export default function BlogPage() {
-  const posts = getAllPosts()
+  const posts = getAllPosts();
 
   return (
     <div className="max-w-4xl mx-auto px-6 pt-32 pb-24">
@@ -19,7 +20,8 @@ export default function BlogPage() {
         </p>
         <h1 className="text-fg-strong text-4xl font-extrabold mb-4">Blog</h1>
         <p className="text-fg-muted mb-16">
-          Thoughts on web development, AI engineering, and the occasional build log.
+          Thoughts on web development, AI engineering, and the occasional build
+          log.
         </p>
       </FadeIn>
 
@@ -35,5 +37,5 @@ export default function BlogPage() {
         </div>
       )}
     </div>
-  )
+  );
 }
