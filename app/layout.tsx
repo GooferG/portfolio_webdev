@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Geist, Big_Shoulders } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Nav from '@/components/Nav';
@@ -7,10 +7,17 @@ import Footer from '@/components/Footer';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import './globals.css';
 
-const inter = Inter({
+const geist = Geist({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-geist',
   display: 'swap',
+});
+
+const bigShoulders = Big_Shoulders({
+  subsets: ['latin'],
+  variable: '--font-big-shoulders',
+  display: 'swap',
+  weight: ['700', '900'],
 });
 
 export const metadata: Metadata = {
@@ -40,7 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={inter.variable}
+      className={`${geist.variable} ${bigShoulders.variable}`}
       data-theme="dark"
       suppressHydrationWarning
     >
