@@ -131,7 +131,7 @@ export default function AboutPage() {
               href="/contact"
               className="w-fit px-7 py-3 bg-accent text-bg-primary font-bold rounded-full hover:bg-accent/90 transition-colors text-sm"
             >
-              Let&apos;s Work Together
+              Start a project
             </Link>
           </FadeIn>
         </div>

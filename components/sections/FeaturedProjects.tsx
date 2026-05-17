@@ -7,7 +7,7 @@ export function FeaturedProjects() {
   const featured = getFeaturedProjects()
 
   return (
-    <section className="max-w-6xl mx-auto px-6 py-24">
+    <section id="featured" className="max-w-6xl mx-auto px-6 py-24">
       <FadeIn>
         <div className="flex items-end justify-between mb-12">
           <div>

@@ -1,13 +1,38 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { ShaderBackground } from '@/components/ui/ShaderBackground';
 import { SOCIALS } from '@/lib/socials';
 
+type Status = { label: string };
+
+function getStatus(hour: number): Status {
+  if (hour >= 6 && hour < 9) return { label: 'Just made coffee' };
+  if (hour >= 12 && hour < 13) return { label: 'Out for lunch, back at 1pm' };
+  if (hour >= 17 && hour < 22) return { label: 'Off the clock, replies tomorrow' };
+  if (hour >= 22 || hour < 6) return { label: 'Asleep, but the form still works' };
+  return { label: 'Available for freelance' };
+}
+
+function useLocalStatus(): Status {
+  const [status, setStatus] = useState<Status>({ label: 'Available for freelance' });
+
+  useEffect(() => {
+    const update = () => setStatus(getStatus(new Date().getHours()));
+    update();
+    const interval = setInterval(update, 60_000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return status;
+}
+
 export default function Hero() {
+  const status = useLocalStatus();
+
   return (
-    <section className="relative min-h-screen overflow-hidden">
-      {/* Shader as background texture — heavily subdued */}
+    <section id="hero" className="relative min-h-screen overflow-hidden">
       <ShaderBackground className="opacity-20" />
       <div
         className="absolute inset-0 pointer-events-none"
@@ -15,15 +40,11 @@ export default function Hero() {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24 min-h-screen flex flex-col justify-between">
-        {/* Top: small marker row */}
-        <div className="flex items-baseline justify-between gap-6 text-fg-faint text-xs font-mono">
-          <span className="tabular-nums">— 01 / Web + AI</span>
-          <span className="hidden sm:inline">Phoenix, AZ · UTC-7</span>
-        </div>
+        {/* Spacer to preserve vertical centering of the grid */}
+        <div aria-hidden="true" />
 
-        {/* Middle: asymmetric grid — stacked name + body column */}
+        {/* Middle: asymmetric grid */}
         <div className="grid grid-cols-12 gap-x-6 gap-y-12 items-start py-12">
-          {/* LUIZ MENEGHIM as art element */}
           <div className="col-span-12 lg:col-span-7">
             <h1
               className="font-display text-fg-strong leading-[0.82] tracking-tight uppercase"
@@ -40,7 +61,6 @@ export default function Hero() {
             </h1>
           </div>
 
-          {/* Body column right */}
           <div className="col-span-12 lg:col-span-4 lg:col-start-9 flex flex-col gap-8 lg:pt-4">
             <p className="text-fg-default text-lg leading-relaxed max-w-sm">
               Frontend engineer and AI builder. I ship React + Next.js apps and
@@ -74,7 +94,7 @@ export default function Hero() {
         <div className="flex flex-wrap items-end justify-between gap-6 text-xs font-mono">
           <div className="flex items-center gap-3 text-fg-muted">
             <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-            <span>Available for freelance</span>
+            <span>{status.label}</span>
           </div>
 
           <div className="flex items-center gap-4">
