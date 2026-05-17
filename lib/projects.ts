@@ -17,6 +17,29 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 'applygecko',
+    title: 'ApplyGecko',
+    description:
+      'AI-powered Chrome extension that auto-fills job applications across LinkedIn, Greenhouse, Lever, Workday, and 20+ other boards, plus a dashboard for tracking, tailoring, and analyzing every send.',
+    longDescription:
+      'ApplyGecko removes the worst part of job hunting: filling out the same form ten times a day. The Chrome extension recognizes 20+ major job boards, parses the posting, and auto-fills the application from your profile in seconds. The web dashboard sits alongside as your command center: track every application by status, tailor your resume per role with Claude, and watch funnel analytics to see which applications convert.',
+    tags: ['Next.js', 'Supabase', 'Chrome Extension', 'Anthropic API'],
+    category: 'AI/LLM',
+    github: 'https://github.com/dweberdev/applygecko',
+    live: '',
+    image: '/images/projects/applygecko/apply-gecko-hp.jpg',
+    imagePosition: 'center top',
+    screenshots: [
+      '/images/projects/applygecko/apply-gecko-hp.jpg',
+      '/images/projects/applygecko/apply-gecko-dash.jpg',
+      '/images/projects/applygecko/apply-gecko-apply.jpg',
+      '/images/projects/applygecko/apply-gecko-apps.jpg',
+      '/images/projects/applygecko/apply-gecko-profile.jpg',
+      '/images/projects/applygecko/apply-gecko-login.jpg',
+    ],
+    featured: true,
+  },
+  {
     id: 'small-biz-website',
     title: 'Small Business Website',
     description:
