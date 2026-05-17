@@ -2,46 +2,55 @@
 
 ## Theme
 
-Dark-first with light variant. Physical scene: a hiring manager or small-business owner skimming on a 14" laptop at midday, or a recruiter on a phone in transit. Dark default reads as "engineer who works in a dark IDE," but light is provided for daylight skimming. Both themes share the teal accent and tinted-neutral system.
+Dark-first with light variant. Physical scene: a Phoenix engineer working at dawn or dusk, ambient warmth, the desert outside the window. Dark is the working state (IDE-adjacent, ember-toned). Light is the daylight state (warm cream, like a desk near a window at noon). Both themes share the saguaro-amber accent and warm-neutral system.
 
 ## Color
 
-Strategy: **Restrained** — tinted dark neutrals + one teal accent used sparingly for CTAs, eyebrow labels, and hover states.
+Strategy: **Committed** — one bold accent hue (saguaro amber, oklch 50°) carries the brand. All neutrals tinted within ±15° of accent hue for true cohesion. The desert palette is the differentiator: nearly zero dev portfolios use warm-earth tones, which is the point.
+
+Color space: **OKLCH everywhere.** Hue family: 30°–60° (ember red through saguaro amber). No `#fff` or `#000` — all neutrals tinted with brand chroma.
 
 ### Dark (default)
 
-| Token | Hex | Use |
+| Token | OKLCH | Use |
 |---|---|---|
-| `--bg-primary` | `#0A0F1E` | Page background |
-| `--bg-card` | `#0d1f2e` | Cards, inputs, code blocks |
-| `--bg-strong` | `#060b12` | Footer, deepest surfaces |
-| `--border-subtle` | `#1e3a4a` | Card borders, dividers |
-| `--accent` | `#00D4AA` | CTAs, eyebrows, focus, hover highlights |
-| `--fg-strong` | `#ffffff` | Headings, primary text |
-| `--fg-default` | `#cbd5e1` | Body text |
-| `--fg-muted` | `#94a3b8` | Secondary body, nav links |
-| `--fg-subtle` | `#64748b` | Tertiary, captions |
-| `--fg-faint` | `#475569` | Disabled, placeholders, separators |
+| `--bg-primary` | `oklch(13% 0.018 35)` | Page background (deep ember) |
+| `--bg-card` | `oklch(18% 0.022 38)` | Cards, inputs, code blocks (warmer card) |
+| `--bg-strong` | `oklch(9% 0.012 32)` | Footer, deepest surfaces, modal backdrops |
+| `--border-subtle` | `oklch(28% 0.030 42)` | Card borders, dividers |
+| `--accent` | `oklch(72% 0.16 50)` | CTAs, accent letter, focus, hover (saguaro amber) |
+| `--accent-warm` | `oklch(64% 0.18 40)` | Deeper ember for secondary accents |
+| `--fg-strong` | `oklch(98% 0.005 60)` | Headings, primary text (warm near-white) |
+| `--fg-default` | `oklch(85% 0.015 55)` | Body text |
+| `--fg-muted` | `oklch(67% 0.022 50)` | Secondary body, nav links |
+| `--fg-subtle` | `oklch(53% 0.025 48)` | Tertiary, captions |
+| `--fg-faint` | `oklch(42% 0.028 45)` | Disabled, placeholders, mono markers |
 
 ### Light
 
-| Token | Hex |
-|---|---|
-| `--bg-primary` | `#F8FAFC` |
-| `--bg-card` | `#FFFFFF` |
-| `--bg-strong` | `#EEF2F7` |
-| `--border-subtle` | `#E2E8F0` |
-| `--accent` | `#00B894` |
-| `--fg-strong` | `#0f172a` |
-| `--fg-default` | `#334155` |
-| `--fg-muted` | `#475569` |
-| `--fg-subtle` | `#64748b` |
-| `--fg-faint` | `#94a3b8` |
+| Token | OKLCH | Use |
+|---|---|---|
+| `--bg-primary` | `oklch(96% 0.015 65)` | Warm cream page |
+| `--bg-card` | `oklch(99% 0.008 65)` | Cleaner cream cards |
+| `--bg-strong` | `oklch(92% 0.020 60)` | Footer, deepest surfaces |
+| `--border-subtle` | `oklch(87% 0.025 55)` | Dusty sand borders |
+| `--accent` | `oklch(58% 0.18 50)` | Deeper amber for contrast on light |
+| `--accent-warm` | `oklch(52% 0.18 40)` | Deeper ember for secondary |
+| `--fg-strong` | `oklch(18% 0.03 40)` | Warm near-black |
+| `--fg-default` | `oklch(32% 0.025 45)` | Body |
+| `--fg-muted` | `oklch(45% 0.022 48)` | Secondary |
+| `--fg-subtle` | `oklch(56% 0.020 52)` | Tertiary |
+| `--fg-faint` | `oklch(70% 0.018 55)` | Mono markers, disabled |
 
 ### Notes
 
-- Pure `#fff` and `#000` used at extremes — could be tinted with brand hue (chroma ~0.005) for cohesion. **Tech-debt note**, not a blocker.
+- All neutrals tinted with brand chroma (0.015–0.030). Pure `#fff` and `#000` banned.
 - Accent at 10–15% alpha for pill backgrounds (`bg-accent/10`, `bg-accent/15`).
+- Reference: Klim Type Foundry's earthy specimens, Sonoran-desert sunsets, saguaro cactus bloom.
+
+## Theme transition
+
+Switching themes uses the View Transitions API for a radial wipe out of the click origin (`ThemeToggle` passes cursor `{x, y}` to `ThemeProvider.toggle()`). 600ms ease-out-quart. Falls back to instant swap on browsers without `startViewTransition` (Firefox at time of writing) and on `prefers-reduced-motion`. Implementation in `app/globals.css` (`@keyframes theme-radial-wipe`) and `components/ThemeProvider.tsx`.
 
 ## Typography
 

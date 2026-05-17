@@ -64,7 +64,8 @@ export default function Hero() {
           <div className="col-span-12 lg:col-span-4 lg:col-start-9 flex flex-col gap-8 lg:pt-4">
             <p className="text-fg-default text-lg leading-relaxed max-w-sm">
               Frontend engineer and AI builder. I ship React + Next.js apps and
-              wire LLMs into products that work.
+              wire <span className="text-accent">LLMs</span> into products that
+              work.
             </p>
 
             <div className="flex flex-col gap-3 text-sm">

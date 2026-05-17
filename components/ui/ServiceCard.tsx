@@ -28,7 +28,7 @@ export function ServiceCard({
       <div
         className={`relative bg-bg-card border rounded-xl p-6 h-full flex flex-col transition-colors duration-300 ${
           popular
-            ? 'border-accent/40 shadow-[0_0_24px_rgba(0,212,170,0.08)] hover:border-accent/60'
+            ? 'border-accent/40 shadow-[0_0_24px_oklch(72%_0.16_50/0.12)] hover:border-accent/60'
             : 'border-border-subtle hover:border-accent/50'
         }`}
       >

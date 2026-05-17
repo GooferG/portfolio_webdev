@@ -60,11 +60,11 @@ const FRAG = `
     float bands = sin(n * 3.5 + p.x * 0.5 + t) * 0.5 + 0.5;
     bands = pow(bands, 2.5);
 
-    // Chrome palette - mostly desaturated, subtle teal in shadows, white highlights
-    vec3 bg        = vec3(0.039, 0.059, 0.118); // #0A0F1E
-    vec3 shadow    = vec3(0.05, 0.12, 0.16);    // dark teal-gray
-    vec3 midtone   = vec3(0.18, 0.32, 0.36);    // muted teal-gray
-    vec3 highlight = vec3(0.85, 0.95, 0.95);    // near-white sheen
+    // Desert palette: ember black ground, warm sand midtones, saguaro-gold highlight
+    vec3 bg        = vec3(0.082, 0.052, 0.038); // deep ember
+    vec3 shadow    = vec3(0.14, 0.09, 0.06);    // warm shadow
+    vec3 midtone   = vec3(0.38, 0.27, 0.18);    // dusty sand
+    vec3 highlight = vec3(0.92, 0.78, 0.52);    // saguaro-gold sheen
 
     vec3 col = mix(shadow, midtone, smoothstep(0.0, 0.5, n + 0.3));
     col = mix(col, highlight, bands * smoothstep(0.3, 0.9, n + 0.3));
