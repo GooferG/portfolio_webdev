@@ -33,10 +33,15 @@ export default function AboutPage() {
   return (
     <div className="max-w-6xl mx-auto px-6 pt-32 pb-24">
       <FadeIn>
-        <p className="text-accent text-xs font-semibold tracking-[3px] uppercase mb-3">
-          Who I Am
-        </p>
-        <h1 className="text-fg-strong text-4xl font-extrabold mb-16">About Me</h1>
+        <h1
+          className="font-display uppercase text-fg-strong leading-[0.9] tracking-tight mb-16"
+          style={{ fontWeight: 900, fontSize: 'clamp(2.5rem, 7vw, 5.5rem)' }}
+        >
+          About
+          <span className="block text-fg-muted italic font-normal normal-case font-sans text-xl sm:text-2xl mt-3 max-w-md leading-snug">
+            who I am, what I build, why I care.
+          </span>
+        </h1>
       </FadeIn>
 
       <div className="grid lg:grid-cols-2 gap-16 items-start">

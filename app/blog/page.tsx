@@ -15,14 +15,15 @@ export default function BlogPage() {
   return (
     <div className="max-w-4xl mx-auto px-6 pt-32 pb-24">
       <FadeIn>
-        <p className="text-accent text-xs font-semibold tracking-[3px] uppercase mb-3">
-          Writing
-        </p>
-        <h1 className="text-fg-strong text-4xl font-extrabold mb-4">Blog</h1>
-        <p className="text-fg-muted mb-16">
-          Thoughts on web development, AI engineering, and the occasional build
-          log.
-        </p>
+        <h1
+          className="font-display uppercase text-fg-strong leading-[0.9] tracking-tight mb-16"
+          style={{ fontWeight: 900, fontSize: 'clamp(2.5rem, 7vw, 5.5rem)' }}
+        >
+          Blog
+          <span className="block text-fg-muted italic font-normal normal-case font-sans text-xl sm:text-2xl mt-3 max-w-md leading-snug">
+            notes on the web, AI, and the occasional build log.
+          </span>
+        </h1>
       </FadeIn>
 
       {posts.length === 0 ? (

@@ -52,14 +52,16 @@ export default function ServicesPage() {
   return (
     <div className="max-w-6xl mx-auto px-6 pt-32 pb-24">
       <FadeIn>
-        <div className="text-center mb-16">
-          <p className="text-accent text-xs font-semibold tracking-[3px] uppercase mb-3">
-            What I Do
-          </p>
-          <h1 className="text-fg-strong text-4xl font-extrabold">Services</h1>
-          <p className="text-fg-muted mt-4 max-w-xl mx-auto">
-            From building fast websites to training AI models - I cover the full stack of modern digital work.
-          </p>
+        <div className="mb-16">
+          <h1
+            className="font-display uppercase text-fg-strong leading-[0.9] tracking-tight"
+            style={{ fontWeight: 900, fontSize: 'clamp(2.5rem, 7vw, 5.5rem)' }}
+          >
+            Services
+            <span className="block text-fg-muted italic font-normal normal-case font-sans text-xl sm:text-2xl mt-3 max-w-md leading-snug">
+              what I do, and how I can help.
+            </span>
+          </h1>
         </div>
       </FadeIn>
 
