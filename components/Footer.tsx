@@ -1,14 +1,4 @@
-import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/ui/SocialIcons';
-
-const socials = [
-  { href: 'https://github.com/goofer_g', icon: GitHubIcon, label: 'GitHub' },
-  {
-    href: 'https://www.linkedin.com/in/lmeneghim/',
-    icon: LinkedInIcon,
-    label: 'LinkedIn',
-  },
-  { href: 'https://x.com/goofer_g', icon: XIcon, label: 'Twitter' },
-];
+import { SOCIALS } from '@/lib/socials';
 
 export default function Footer() {
   return (
@@ -17,7 +7,7 @@ export default function Footer() {
         <span>© 2026 Luiz Meneghim</span>
 
         <div className="flex items-center gap-4">
-          {socials.map(({ href, icon: Icon, label }) => (
+          {SOCIALS.map(({ href, icon: Icon, label }) => (
             <a
               key={label}
               href={href}

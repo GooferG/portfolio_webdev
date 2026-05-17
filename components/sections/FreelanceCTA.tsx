@@ -3,12 +3,12 @@ import { FadeIn } from '@/components/ui/FadeIn'
 
 export function FreelanceCTA() {
   return (
-    <section className="border-t border-border-subtle">
+    <section id="freelance-cta" className="border-t border-border-subtle">
       <FadeIn>
         <div className="max-w-6xl mx-auto px-6 py-16 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-accent" />
               <span className="text-accent text-xs font-semibold tracking-[2px] uppercase">
                 Available for work
               </span>
@@ -24,7 +24,7 @@ export function FreelanceCTA() {
             href="/contact"
             className="shrink-0 px-7 py-3 bg-accent text-bg-primary font-bold rounded-full hover:bg-accent/90 transition-colors text-sm"
           >
-            Get in Touch
+            Start a project
           </Link>
         </div>
       </FadeIn>

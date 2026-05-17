@@ -14,7 +14,8 @@
   --color-fg-subtle: var(--fg-subtle);
   --color-fg-faint: var(--fg-faint);
 
-  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-sans: var(--font-geist), system-ui, sans-serif;
+  --font-display: var(--font-big-shoulders), system-ui, sans-serif;
 }
 
 :root,
@@ -85,58 +86,18 @@
   filter: invert(1) hue-rotate(180deg);
 }
 
-/* Shimmer pill — accent tint + soft sheen sweep */
-.shimmer-pill {
-  position: relative;
-  display: inline-block;
-  padding: 0.15em 0.6em;
-  border-radius: 9999px;
-  background-color: rgba(0, 212, 170, 0.10);
-  border: 1px solid rgba(0, 212, 170, 0.30);
-  color: var(--accent);
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.shimmer-pill::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    100deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.18) 50%,
-    transparent 70%
-  );
-  transform: translateX(-100%);
-  animation: shimmer-sweep 4s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.shimmer-pill.shimmer-delay::before {
-  animation-delay: 2s;
-}
-
-.shimmer-pill > * {
-  position: relative;
-  z-index: 2;
-}
-
-@keyframes shimmer-sweep {
-  0%, 40% {
-    transform: translateX(-100%);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-  60%, 100% {
-    transform: translateX(100%);
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-}
-
-[data-theme="light"] .shimmer-pill::before {
-  background: linear-gradient(
-    100deg,
-    transparent 30%,
-    rgba(0, 212, 170, 0.25) 50%,
-    transparent 70%
-  );
+  .shader-bg {
+    display: none;
+  }
 }

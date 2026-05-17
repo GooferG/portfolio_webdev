@@ -1,203 +1,116 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
-import { useRotatingTypewriter } from '@/hooks/useTypingEffect';
-import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/ui/SocialIcons';
+import { useEffect, useState } from 'react';
 import { ShaderBackground } from '@/components/ui/ShaderBackground';
-import { TypewriterText } from '@/components/ui/TypewriterText';
+import { SOCIALS } from '@/lib/socials';
 
-const TAGLINES = [
-  'I build things for the web — and teach machines to think.',
-  'I ship React + Next.js apps that load fast and feel sharp.',
-  'I wire LLMs into real products that solve real problems.',
-];
+type Status = { label: string };
 
-const socials = [
-  {
-    href: 'https://github.com/goofer_g',
-    icon: GitHubIcon,
-    label: 'GitHub',
-  },
-  {
-    href: 'https://www.linkedin.com/in/lmeneghim/',
-    icon: LinkedInIcon,
-    label: 'LinkedIn',
-  },
-  { href: 'https://twitter.com/Goofer_G', icon: XIcon, label: 'Twitter' },
-];
+function getStatus(hour: number): Status {
+  if (hour >= 6 && hour < 9) return { label: 'Just made coffee' };
+  if (hour >= 12 && hour < 13) return { label: 'Out for lunch, back at 1pm' };
+  if (hour >= 17 && hour < 22) return { label: 'Off the clock, replies tomorrow' };
+  if (hour >= 22 || hour < 6) return { label: 'Asleep, but the form still works' };
+  return { label: 'Available for freelance' };
+}
 
-const services = [
-  'Web Development',
-  'AI Consulting',
-  'LLM Engineering',
-  'Server Admin',
-  'Tech Assistance',
-];
+function useLocalStatus(): Status {
+  const [status, setStatus] = useState<Status>({ label: 'Available for freelance' });
 
-function DottedI() {
-  return (
-    <span className="relative inline-block">
-      {'ı'}
-      <span
-        aria-hidden="true"
-        className="absolute rounded-full bg-accent"
-        style={{
-          width: '0.18em',
-          height: '0.18em',
-          left: '50%',
-          top: '0.12em',
-          transform: 'translateX(-50%)',
-        }}
-      />
-    </span>
-  );
+  useEffect(() => {
+    const update = () => setStatus(getStatus(new Date().getHours()));
+    update();
+    const interval = setInterval(update, 60_000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return status;
 }
 
 export default function Hero() {
-  const typewriter = useRotatingTypewriter(TAGLINES);
+  const status = useLocalStatus();
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Animated shader background */}
-      <ShaderBackground className="opacity-50" />
-
-      {/* Overlay - keeps text readable over shader */}
+    <section id="hero" className="relative min-h-screen overflow-hidden">
+      <ShaderBackground className="opacity-20" />
       <div
         className="absolute inset-0 pointer-events-none"
         style={{ backgroundColor: 'var(--overlay-on-bg)' }}
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 w-full pt-24 pb-32 flex items-center gap-12">
-        {/* Left: text content */}
-        <div className="flex-1 flex flex-col gap-6">
-          <div className="flex items-center gap-2 w-fit">
-            <span className="w-2 h-2 rounded-full bg-fg-strong block" />
-            <span className="text-accent text-xs font-semibold tracking-[3px] uppercase">
-              Hello, I am
-            </span>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24 min-h-screen flex flex-col justify-between">
+        {/* Spacer to preserve vertical centering of the grid */}
+        <div aria-hidden="true" />
+
+        {/* Middle: asymmetric grid */}
+        <div className="grid grid-cols-12 gap-x-6 gap-y-12 items-start py-12">
+          <div className="col-span-12 lg:col-span-7">
+            <h1
+              className="font-display text-fg-strong leading-[0.82] tracking-tight uppercase"
+              style={{
+                fontWeight: 900,
+                fontSize: 'clamp(4.5rem, 13vw, 11rem)',
+              }}
+            >
+              <span className="block">Luiz</span>
+              <span className="block">
+                Men<span className="text-accent">e</span>
+                ghim
+              </span>
+            </h1>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-fg-strong leading-[1.05] tracking-tight">
-            <span className="inline-flex items-baseline">
-              Lu
-              <DottedI />z
-            </span>
-            <br />
-            <span className="inline-flex items-baseline">
-              Menegh
-              <DottedI />m
-            </span>
-          </h1>
+          <div className="col-span-12 lg:col-span-4 lg:col-start-9 flex flex-col gap-8 lg:pt-4">
+            <p className="text-fg-default text-lg leading-relaxed max-w-sm">
+              Frontend engineer and AI builder. I ship React + Next.js apps and
+              wire LLMs into products that work.
+            </p>
 
-          <p className="flex flex-wrap items-center gap-x-2 gap-y-2 text-fg-default text-sm sm:text-base">
-            <span className="shimmer-pill text-xs sm:text-sm font-semibold tracking-wide">
-              <span>Frontend Developer</span>
-            </span>
-            <span className="text-fg-faint">and</span>
-            <span className="shimmer-pill shimmer-delay text-xs sm:text-sm font-semibold tracking-wide">
-              <span>AI Engineer</span>
-            </span>
-          </p>
+            <div className="flex flex-col gap-3 text-sm">
+              <Link
+                href="/contact"
+                className="group inline-flex items-baseline gap-3 text-fg-strong hover:text-accent transition-colors w-fit"
+              >
+                <span className="text-accent">→</span>
+                <span className="border-b border-fg-faint group-hover:border-accent transition-colors">
+                  Start a project
+                </span>
+              </Link>
+              <Link
+                href="/projects"
+                className="group inline-flex items-baseline gap-3 text-fg-muted hover:text-fg-strong transition-colors w-fit"
+              >
+                <span className="text-fg-faint">→</span>
+                <span className="border-b border-transparent group-hover:border-fg-faint transition-colors">
+                  See recent work
+                </span>
+              </Link>
+            </div>
+          </div>
+        </div>
 
-          <p className="text-fg-muted text-lg max-w-md leading-relaxed min-h-22">
-            <TypewriterText state={typewriter} />
-          </p>
-
-          <div className="flex items-center gap-4 mt-2">
-            <Link
-              href="/contact"
-              className="px-7 py-3 bg-accent text-bg-primary font-bold rounded-full hover:bg-accent/90 transition-colors text-sm"
-            >
-              Hire Me
-            </Link>
-            <Link
-              href="/projects"
-              className="px-7 py-3 border border-border-subtle text-fg-muted rounded-full hover:border-accent hover:text-fg-strong transition-colors text-sm"
-            >
-              My Work
-            </Link>
+        {/* Bottom: status row + socials */}
+        <div className="flex flex-wrap items-end justify-between gap-6 text-xs font-mono">
+          <div className="flex items-center gap-3 text-fg-muted">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+            <span>{status.label}</span>
           </div>
 
-          <div className="flex items-center gap-3 mt-4">
-            {socials.map(({ href, icon: Icon, label }) => (
+          <div className="flex items-center gap-4">
+            {SOCIALS.map(({ href, icon: Icon, label }) => (
               <a
                 key={label}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-9 h-9 flex items-center justify-center rounded-lg bg-bg-card border border-border-subtle text-fg-subtle hover:text-accent hover:border-accent transition-colors"
+                className="text-fg-faint hover:text-accent transition-colors"
               >
                 <Icon size={16} />
               </a>
             ))}
           </div>
-        </div>
-
-        {/* Right: photo with all edges faded */}
-        <div
-          className="hidden md:block relative flex-shrink-0 w-[420px] h-[560px]"
-          style={{
-            filter:
-              'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 30px rgba(0, 212, 170, 0.15))',
-          }}
-        >
-          <Image
-            src="/images/luiz-meneghim-hero.jpg"
-            alt="Luiz Meneghim"
-            fill
-            priority
-            className="object-cover object-top rounded-2xl"
-            style={{
-              maskImage:
-                'radial-gradient(ellipse 85% 90% at 55% 50%, black 50%, transparent 100%)',
-              WebkitMaskImage:
-                'radial-gradient(ellipse 85% 90% at 55% 50%, black 50%, transparent 100%)',
-            }}
-          />
-        </div>
-      </div>
-
-      {/* github integration for hero section */}
-
-      {/* <div className="absolute bottom-14 left-0 right-0 z-20 px-6 pb-15">
-        <div className="max-w-6xl mx-auto">
-          <div className="bg-bg-card/80 backdrop-blur-md border border-border-subtle rounded-2xl p-4 md:p-6">
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-xs text-slate-500 uppercase tracking-widest">
-                GitHub Activity
-              </span>
-              <span className="text-xs text-slate-600">@GooferG</span>
-            </div>
-
-            <GitHubCalendar
-              username="GooferG"
-              blockSize={12}
-              blockMargin={4}
-              fontSize={12}
-            />
-          </div>
-        </div>
-      </div> */}
-
-      {/* Service strip - bottom */}
-      <div
-        className="absolute bottom-0 left-0 right-0 z-20 backdrop-blur-md border-t border-border-subtle py-3 px-6 overflow-x-auto"
-        style={{ backgroundColor: 'var(--overlay-strip)' }}
-      >
-        <div className="max-w-6xl mx-auto flex items-center gap-6 text-sm whitespace-nowrap">
-          <span className="text-fg-faint uppercase tracking-widest text-[10px] font-semibold shrink-0">
-            I offer
-          </span>
-          {services.map((s, i) => (
-            <span key={s} className="flex items-center gap-6 text-fg-muted">
-              {i > 0 && (
-                <span className="text-border-subtle mr-[-18px]">·</span>
-              )}
-              {s}
-            </span>
-          ))}
         </div>
       </div>
     </section>

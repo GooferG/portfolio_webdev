@@ -33,10 +33,15 @@ export default function AboutPage() {
   return (
     <div className="max-w-6xl mx-auto px-6 pt-32 pb-24">
       <FadeIn>
-        <p className="text-accent text-xs font-semibold tracking-[3px] uppercase mb-3">
-          Who I Am
-        </p>
-        <h1 className="text-fg-strong text-4xl font-extrabold mb-16">About Me</h1>
+        <h1
+          className="font-display uppercase text-fg-strong leading-[0.9] tracking-tight mb-16"
+          style={{ fontWeight: 900, fontSize: 'clamp(2.5rem, 7vw, 5.5rem)' }}
+        >
+          About
+          <span className="block text-fg-muted italic font-normal normal-case font-sans text-xl sm:text-2xl mt-3 max-w-md leading-snug">
+            who I am, what I build, why I care.
+          </span>
+        </h1>
       </FadeIn>
 
       <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -89,7 +94,7 @@ export default function AboutPage() {
           <FadeIn delay={0.15}>
             <div className="flex flex-wrap items-center gap-4">
               <span className="flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/30 rounded-full text-accent text-sm font-medium">
-                <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-accent" />
                 Available for freelance
               </span>
               <a
@@ -126,7 +131,7 @@ export default function AboutPage() {
               href="/contact"
               className="w-fit px-7 py-3 bg-accent text-bg-primary font-bold rounded-full hover:bg-accent/90 transition-colors text-sm"
             >
-              Let&apos;s Work Together
+              Start a project
             </Link>
           </FadeIn>
         </div>

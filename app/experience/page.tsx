@@ -14,17 +14,18 @@ export default function ExperiencePage() {
   return (
     <div className="max-w-5xl mx-auto px-6 pt-32 pb-24">
       <FadeIn>
-        <p className="text-accent text-xs font-semibold tracking-[3px] uppercase mb-3">
-          Curriculum Vitae
-        </p>
-        <h1 className="text-fg-strong text-4xl sm:text-5xl font-extrabold leading-tight mb-6">
-          Where I&apos;ve worked,
-          <br />
-          <span className="text-fg-muted italic font-normal">what I built.</span>
+        <h1
+          className="font-display uppercase text-fg-strong leading-[0.9] tracking-tight mb-6"
+          style={{ fontWeight: 900, fontSize: 'clamp(2.5rem, 7vw, 5.5rem)' }}
+        >
+          Experience
+          <span className="block text-fg-muted italic font-normal normal-case font-sans text-xl sm:text-2xl mt-3 max-w-md leading-snug">
+            where I have worked, what I built.
+          </span>
         </h1>
         <p className="text-fg-muted text-lg max-w-xl leading-relaxed mb-12">
           Nine-plus years across web development, security analysis, and
-          technical support - laid out chronologically. Bilingual English and
+          technical support, laid out chronologically. Bilingual English and
           Portuguese, working out of Arizona.
         </p>
       </FadeIn>
