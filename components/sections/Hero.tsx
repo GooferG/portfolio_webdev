@@ -1,18 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/ui/SocialIcons';
 import { ShaderBackground } from '@/components/ui/ShaderBackground';
-
-const socials = [
-  { href: 'https://github.com/goofer_g', icon: GitHubIcon, label: 'GitHub' },
-  {
-    href: 'https://www.linkedin.com/in/lmeneghim/',
-    icon: LinkedInIcon,
-    label: 'LinkedIn',
-  },
-  { href: 'https://twitter.com/Goofer_G', icon: XIcon, label: 'Twitter' },
-];
+import { SOCIALS } from '@/lib/socials';
 
 export default function Hero() {
   return (
@@ -88,7 +78,7 @@ export default function Hero() {
           </div>
 
           <div className="flex items-center gap-4">
-            {socials.map(({ href, icon: Icon, label }) => (
+            {SOCIALS.map(({ href, icon: Icon, label }) => (
               <a
                 key={label}
                 href={href}

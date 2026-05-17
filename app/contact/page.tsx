@@ -12,8 +12,8 @@ import {
   Check,
   Download,
 } from 'lucide-react';
-import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/ui/SocialIcons';
 import { FadeIn } from '@/components/ui/FadeIn';
+import { SOCIALS } from '@/lib/socials';
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error-network' | 'error-server';
 
@@ -322,33 +322,18 @@ function ContactPageInner() {
               </div>
 
               <div className="flex flex-col gap-3 pt-4 border-t border-border-subtle">
-                <a
-                  href="https://github.com/goofer_g"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 hover:text-accent transition-colors"
-                >
-                  <GitHubIcon size={16} />
-                  github.com/goofer_g
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/lmeneghim/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 hover:text-accent transition-colors"
-                >
-                  <LinkedInIcon size={16} />
-                  linkedin.com/in/lmeneghim/
-                </a>
-                <a
-                  href="https://x.com/Goofer_G"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 hover:text-accent transition-colors"
-                >
-                  <XIcon size={16} />
-                  x.com/Goofer_G
-                </a>
+                {SOCIALS.map(({ href, icon: Icon, label, display }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 hover:text-accent transition-colors"
+                  >
+                    <Icon size={16} />
+                    {display}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
