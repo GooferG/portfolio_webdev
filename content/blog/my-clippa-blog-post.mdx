@@ -57,11 +57,11 @@ What ended up in the UI:
 
 The whole UI is one `ui.py` file. About 400 lines. Gradio 6.
 
-## Things that bit me
+## Things that stumped me
 
 A few non-obvious things ate a lot of time:
 
-**Whisper auto-detects language from audio, and game audio dominates mic audio.** A one-hour Nioh recording got detected as Japanese. The transcript was a single thirty-minute "segment" of hallucinated `おつかれさまでした` repetitions. My English commentary was effectively suppressed. The fix was forcing `language="en"` in the `.env` rather than trusting auto-detection.
+**Whisper auto-detects language from audio, and game audio dominates mic audio.** A one-hour Nioh recording got detected as Japanese. The transcript was a single thirty-minute "segment" of hallucinated `おつかれさまでした` repetitions. My English commentary was effectively suppressed. The fix was forcing `language="en"` in the `.env` rather than trusting auto-detection. I didn't even think of this initially, because I was just thinking of recent games I had played, and didn't think the audio itself from a game would stump the process.
 
 **CTranslate2's Whisper model destructor crashes Python on Windows during CUDA cleanup.** Exit code 9, sometimes 3221226505 (`STATUS_STACK_BUFFER_OVERRUN`). The model loaded fine, transcribed fine, and then nuked the interpreter on shutdown. I worked around it three ways at once: a module-level singleton so the model never goes out of scope mid-function, writing the transcript cache _before_ any return, and ending the transcribe CLI subcommand with `os._exit(0)` to skip interpreter teardown entirely. The main `run` command spawns transcription as a subprocess so any residual crash is contained.
 
