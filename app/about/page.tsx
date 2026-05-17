@@ -60,7 +60,7 @@ export default function AboutPage() {
               className="absolute -bottom-4 -right-4 w-48 h-48 rounded-full pointer-events-none"
               style={{
                 background:
-                  'radial-gradient(circle, rgba(0,212,170,0.15) 0%, transparent 70%)',
+                  'radial-gradient(circle, oklch(72% 0.16 50 / 0.18) 0%, transparent 70%)',
               }}
             />
           </div>

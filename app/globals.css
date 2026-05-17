@@ -7,6 +7,7 @@
   --color-bg-strong: var(--bg-strong);
   --color-border-subtle: var(--border-subtle);
   --color-accent: var(--accent);
+  --color-accent-warm: var(--accent-warm);
 
   --color-fg-strong: var(--fg-strong);
   --color-fg-default: var(--fg-default);
@@ -18,41 +19,61 @@
   --font-display: var(--font-big-shoulders), system-ui, sans-serif;
 }
 
+/* --------------------------------------------------------------------
+   Phoenix desert palette.
+
+   Hue family: 30°–60° (ember red through saguaro amber).
+   Neutrals share the accent hue family for true cohesion.
+   Accent: oklch(72% 0.16 50) — saguaro bloom / Sonoran sunset.
+   No #fff or #000 anywhere. All neutrals tinted with brand chroma.
+   -------------------------------------------------------------------- */
+
 :root,
 [data-theme="dark"] {
-  --bg-primary: #0A0F1E;
-  --bg-card: #0d1f2e;
-  --bg-strong: #060b12;
-  --border-subtle: #1e3a4a;
-  --accent: #00D4AA;
+  /* Surfaces — deep ember black through warm card */
+  --bg-primary: oklch(13% 0.018 35);
+  --bg-card: oklch(18% 0.022 38);
+  --bg-strong: oklch(9% 0.012 32);
+  --border-subtle: oklch(28% 0.030 42);
 
-  --fg-strong: #ffffff;
-  --fg-default: #cbd5e1;
-  --fg-muted: #94a3b8;
-  --fg-subtle: #64748b;
-  --fg-faint: #475569;
+  /* Accent — saguaro amber */
+  --accent: oklch(72% 0.16 50);
+  --accent-warm: oklch(64% 0.18 40); /* deeper ember for secondary accents */
 
-  --overlay-on-bg: rgba(10, 15, 30, 0.5);
-  --overlay-strip: rgba(0, 0, 0, 0.6);
-  --nav-scrolled: rgba(10, 15, 30, 0.8);
+  /* Foregrounds — warm near-white through warm shadow */
+  --fg-strong: oklch(98% 0.005 60);
+  --fg-default: oklch(85% 0.015 55);
+  --fg-muted: oklch(67% 0.022 50);
+  --fg-subtle: oklch(53% 0.025 48);
+  --fg-faint: oklch(42% 0.028 45);
+
+  /* Overlays — all tinted, no pure black */
+  --overlay-on-bg: oklch(13% 0.018 35 / 0.5);
+  --overlay-strip: oklch(9% 0.012 32 / 0.7);
+  --nav-scrolled: oklch(13% 0.018 35 / 0.8);
 }
 
 [data-theme="light"] {
-  --bg-primary: #F8FAFC;
-  --bg-card: #FFFFFF;
-  --bg-strong: #EEF2F7;
-  --border-subtle: #E2E8F0;
-  --accent: #00B894;
+  /* Surfaces — warm cream through dusty card */
+  --bg-primary: oklch(96% 0.015 65);
+  --bg-card: oklch(99% 0.008 65);
+  --bg-strong: oklch(92% 0.020 60);
+  --border-subtle: oklch(87% 0.025 55);
 
-  --fg-strong: #0f172a;
-  --fg-default: #334155;
-  --fg-muted: #475569;
-  --fg-subtle: #64748b;
-  --fg-faint: #94a3b8;
+  /* Accent — deeper amber for contrast on light */
+  --accent: oklch(58% 0.18 50);
+  --accent-warm: oklch(52% 0.18 40);
 
-  --overlay-on-bg: rgba(248, 250, 252, 0.6);
-  --overlay-strip: rgba(255, 255, 255, 0.7);
-  --nav-scrolled: rgba(248, 250, 252, 0.85);
+  /* Foregrounds — warm near-black through dusty shadow */
+  --fg-strong: oklch(18% 0.03 40);
+  --fg-default: oklch(32% 0.025 45);
+  --fg-muted: oklch(45% 0.022 48);
+  --fg-subtle: oklch(56% 0.020 52);
+  --fg-faint: oklch(70% 0.018 55);
+
+  --overlay-on-bg: oklch(96% 0.015 65 / 0.6);
+  --overlay-strip: oklch(99% 0.008 65 / 0.7);
+  --nav-scrolled: oklch(96% 0.015 65 / 0.85);
 }
 
 @layer base {
@@ -86,6 +107,37 @@
   filter: invert(1) hue-rotate(180deg);
 }
 
+/* --------------------------------------------------------------------
+   Theme transition: radial wipe out of the click origin.
+   Uses View Transitions API. Falls back to instant swap.
+   -------------------------------------------------------------------- */
+
+@supports (view-transition-name: root) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(root) {
+    z-index: 1;
+  }
+
+  ::view-transition-new(root) {
+    z-index: 2;
+    animation: theme-radial-wipe 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@keyframes theme-radial-wipe {
+  from {
+    clip-path: circle(0% at var(--theme-x, 50%) var(--theme-y, 50%));
+  }
+  to {
+    clip-path: circle(150% at var(--theme-x, 50%) var(--theme-y, 50%));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -96,6 +148,10 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  ::view-transition-new(root),
+  ::view-transition-old(root) {
+    animation: none;
   }
   .shader-bg {
     display: none;

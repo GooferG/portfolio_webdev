@@ -7,9 +7,13 @@ export function ThemeToggle({ className = '' }: { className?: string }) {
   const { theme, toggle } = useTheme()
   const isDark = theme === 'dark'
 
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    toggle({ x: e.clientX, y: e.clientY })
+  }
+
   return (
     <button
-      onClick={toggle}
+      onClick={handleClick}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
       className={`w-9 h-9 flex items-center justify-center rounded-lg border border-border-subtle text-fg-muted hover:text-accent hover:border-accent transition-colors ${className}`}
     >

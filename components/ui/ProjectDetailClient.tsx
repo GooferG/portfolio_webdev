@@ -80,7 +80,7 @@ export function ProjectDetailClient({ project, prevProject, nextProject }: Props
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
             />
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
+            <div className="absolute inset-0 bg-bg-strong/0 group-hover:bg-bg-strong/30 transition-colors" />
           </button>
 
           {/* Thumbnails - only show strip if more than 1 screenshot */}
@@ -190,7 +190,7 @@ export function ProjectDetailClient({ project, prevProject, nextProject }: Props
       {/* Lightbox */}
       {lightboxOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center"
+          className="fixed inset-0 z-50 bg-bg-strong/90 backdrop-blur-sm flex items-center justify-center"
           onClick={() => setLightboxOpen(false)}
           role="dialog"
           aria-modal="true"
