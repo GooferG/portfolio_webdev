@@ -1,0 +1,98 @@
+---
+title: 'Building my-clippa: A Local-First AI Clip Finder for Long-Form Video'
+date: 2026-05-16
+tags: [ai, llm, video, mcp, gradio, davinci-resolve, lm-studio, side-project]
+draft: false
+---
+
+# Building my-clippa: A Local-First AI Clip Finder for Long-Form Video
+
+I try to record a lot of long-form gaming and tutorial content. Twitch VODs, OBS captures, Let's Plays — the kind of stuff that's two hours long and contains maybe twelve minutes of actually clip-worthy moments. Scrubbing through those manually is the bottleneck between "I recorded something" and "I have content to post."
+
+So I decided to build a tool for myself. Not a product. Not a SaaS. Just a thing that solves my own problem on my own hardware. This post is about how that tool — `my-clippa` — came together.
+
+## The premise
+
+The pitch I gave myself was simple: give the AI the audio, let it figure out where the interesting moments are, and have it drop markers on my DaVinci Resolve timeline so I can jump straight to editing.
+
+Three things made this feasible right now:
+
+1. **Local Whisper is fast enough.** `faster-whisper` with `int8_float16` on my RTX 5080 transcribes an hour of audio in a couple of minutes.
+2. **Local LLMs are smart enough.** Qwen3.6-35B-A3B running in LM Studio is more than capable of reading a transcript and picking out clip candidates with timestamps.
+3. **MCP makes the editor reachable.** Through the Model Context Protocol, Claude Desktop can drive DaVinci Resolve directly via [samuelgursky's davinci-resolve-mcp](https://github.com/samuelgursky/davinci-resolve-mcp) server.
+
+Point three is the one that made me actually start building. I'd been working through Ed Donner's course on LLM engineering and the MCP material in particular clicked for me as the missing piece. Tool-calling was already a thing, but MCP standardizes it across applications. Suddenly the AI isn't just generating text _about_ my timeline — it can actually _operate_ my timeline.
+
+## The architecture
+
+I landed on a two-phase split that keeps cost near zero on the heavy work and only spends Claude tokens on the part that benefits from a top-tier model.
+
+**Phase 1 — local.** A small Python pipeline:
+
+- `faster-whisper` transcribes the VOD with `language="en"` forced (more on that gotcha below) and `condition_on_previous_text=False` to suppress repetition hallucinations.
+- The transcript gets handed to Qwen3.6-35B-A3B in LM Studio over its OpenAI-compatible API. Qwen reads it as Hermes Agent tool calls and emits clip candidates as JSON: start time, end time, category, reason.
+- Output lands in `data/candidates/<vod-name>_<hash>.json`.
+
+**Phase 2 — Claude Desktop + MCP.** The tool generates a copy-pasteable prompt. I paste it into Claude Desktop, and Claude — using the Resolve MCP server — does one of two things depending on the profile:
+
+- **Highlight mode:** drops colored markers on the active timeline at each candidate's start time, color-coded by category.
+- **Tighten mode:** for tutorial-style content, duplicates the timeline first, then blade-cuts and ripple-deletes filler regions from latest to earliest (so frame shifts don't compound).
+
+The "duplicate first" rule is non-negotiable for anything destructive. I never let the AI touch the original.
+
+## Why Gradio instead of CLI
+
+The first working version was pure CLI. `python cli.py run path/to/vod.mp4`. It worked, but I knew the moment the novelty wore off I'd stop using it.
+
+Ed Donner's course introduced Gradio as a way to put a UI on local AI tools without writing any frontend. I'd seen Fooocus launch as a Gradio app from a `.bat` file and thought "yes, that's exactly the UX I want." Click a script, browser opens, I'm in.
+
+What ended up in the UI:
+
+- **VOD picker** with file dropdown, including a "linked directories" feature so I can reference files in `D:\OBS Recordings` without copying them into the project.
+- **Profile selector** (slots_streamer, lets_play, game_review, tutorial, podcast, tutorial_tighten).
+- **Run / Stop buttons** with subprocess control — Stop actually kills the child process tree on Windows via `taskkill /T /F`.
+- **Live log streaming** from the subprocess, parsed for transcribe progress percentage so the slider moves while Whisper crunches.
+- **Phase 2 prompt panel** as a `gr.Code` block with a built-in copy button.
+- **Cache management** — clear all transcripts and candidates with one button when I want a fresh test.
+
+The whole UI is one `ui.py` file. About 400 lines. Gradio 6.
+
+## Things that bit me
+
+A few non-obvious things ate a lot of time:
+
+**Whisper auto-detects language from audio, and game audio dominates mic audio.** A one-hour Nioh recording got detected as Japanese. The transcript was a single thirty-minute "segment" of hallucinated `おつかれさまでした` repetitions. My English commentary was effectively suppressed. The fix was forcing `language="en"` in the `.env` rather than trusting auto-detection.
+
+**CTranslate2's Whisper model destructor crashes Python on Windows during CUDA cleanup.** Exit code 9, sometimes 3221226505 (`STATUS_STACK_BUFFER_OVERRUN`). The model loaded fine, transcribed fine, and then nuked the interpreter on shutdown. I worked around it three ways at once: a module-level singleton so the model never goes out of scope mid-function, writing the transcript cache _before_ any return, and ending the transcribe CLI subcommand with `os._exit(0)` to skip interpreter teardown entirely. The main `run` command spawns transcription as a subprocess so any residual crash is contained.
+
+**LM Studio's `lms load` CLI doesn't apply `operation.fields` from the per-model config.** Load-time settings persist (context length, CPU threads, GPU offload) but inference-time settings like `enableThinking: false` don't. Every reload, Qwen comes back thinking. The OpenAI `extra_body` workaround with `chat_template_kwargs.enable_thinking=false` is also silently ignored by LM Studio's API. The pragmatic fix was bumping `MAX_TOKENS` to 4096 so reasoning + tool call both fit even when thinking is on. Not elegant. Works.
+
+**Resolve timelines default to 01:00:00:00 start.** Broadcast convention. My first run produced markers at `01:03:08`, which I mistook for being "an hour off" when actually they were correct, just offset by the project's default start TC. The Phase 2 prompt now bakes in an instruction to set the start TC to `00:00:00:00` before dropping markers.
+
+## Status
+
+What's working today:
+
+- Highlight finding for five gaming/streaming/tutorial profiles
+- A "tighten" profile that finds cut-worthy regions for jump-cut style editing
+- One-click launch through `run.bat`
+- Real end-to-end test on a real one-hour Twitch VOD — produced lots of valid candidates
+
+What's next:
+
+- **Stage 1: highlight reel builder.** Instead of just dropping markers, generate a new timeline containing only the candidate ranges with dissolves between them. Non-destructive.
+- **Stage 3: crop-ins.** Dynamic zoom on highlight moments for that extra punch.
+
+## What I'd tell someone starting their own version
+
+Build for yourself first. The whole project shipped faster because I didn't have to defend any UX or scope decisions to anyone — if a workflow annoyed me, I changed it that hour.
+
+Keep the heavy work local if you can. The two-phase split where local models do the parsing and a frontier model only handles the final structured action keeps the cost-per-VOD effectively zero on the part that scales with content length.
+
+MCP is the unlock. The interesting AI tools coming in 2026 aren't the ones that write better prose — they're the ones that can actually pick up your tools and use them. Ed Donner's course was the thing that made this concrete enough for me to start.
+
+And — put a UI on it. Even a janky Gradio one. CLI tools you built for yourself stop getting used the day after you finish them. UIs survive.
+
+---
+
+If you want to chat about it or you're building something similar, I'm reachable at luimeneghim@gmail.com.
