@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Mail, MapPin, CheckCircle, AlertCircle } from 'lucide-react';
 import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/ui/SocialIcons';
 import { FadeIn } from '@/components/ui/FadeIn';
@@ -9,8 +10,27 @@ type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
 const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID ?? '';
 
+const SERVICE_SUBJECTS: Record<string, string> = {
+  'web-development': 'Web development project',
+  'server-hosting': 'Server / hosting help',
+  'ai-consulting': 'AI consulting',
+  'llm-engineering': 'LLM engineering project',
+  'tech-assistance': 'Tech assistance',
+};
+
 export default function ContactPage() {
+  return (
+    <Suspense fallback={null}>
+      <ContactPageInner />
+    </Suspense>
+  );
+}
+
+function ContactPageInner() {
   const [status, setStatus] = useState<FormStatus>('idle');
+  const searchParams = useSearchParams();
+  const serviceSlug = searchParams.get('service') ?? '';
+  const defaultSubject = SERVICE_SUBJECTS[serviceSlug] ?? '';
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -87,6 +107,8 @@ export default function ContactPage() {
                 name="subject"
                 type="text"
                 required
+                defaultValue={defaultSubject}
+                key={defaultSubject}
                 placeholder="What's this about?"
                 className="bg-bg-card border border-border-subtle rounded-xl px-4 py-3 text-fg-strong text-sm placeholder:text-fg-faint focus:outline-none focus:border-accent transition-colors"
               />
