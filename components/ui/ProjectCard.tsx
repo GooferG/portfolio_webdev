@@ -38,8 +38,9 @@ export function ProjectCard({ project }: { project: Project }) {
           alt={project.title}
           fill
           style={project.imagePosition ? { objectPosition: project.imagePosition } : undefined}
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover"
         />
+        <div className="absolute inset-0 bg-bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       </div>
 
       <div className="p-5 flex flex-col flex-1">

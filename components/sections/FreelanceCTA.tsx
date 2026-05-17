@@ -8,7 +8,7 @@ export function FreelanceCTA() {
         <div className="max-w-6xl mx-auto px-6 py-16 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-accent" />
               <span className="text-accent text-xs font-semibold tracking-[2px] uppercase">
                 Available for work
               </span>
