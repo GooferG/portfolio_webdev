@@ -55,18 +55,6 @@ export default function Hero() {
 
         {/* Middle: asymmetric grid */}
         <div className="grid grid-cols-12 gap-x-6 gap-y-12 items-start py-12 relative">
-          {/* Sun sits behind the name. Positioned over the `e` row of MENEGHIM. */}
-          <SunRise
-            className="
-              hidden lg:block
-              z-0
-              w-[16vw] h-[16vw] max-w-50 max-h-50
-              top-[50%] left-[38%]
-              -translate-x-1/2 -translate-y-1/2
-							[clip-path:inset(0_0_50%_0)]
-            "
-          />
-
           <div className="col-span-12 lg:col-span-7 relative z-10">
             <h1
               className="font-display text-fg-strong leading-[0.82] tracking-tight uppercase"
@@ -82,9 +70,24 @@ export default function Hero() {
               }}
             >
               <span className="block">Luiz</span>
-              <span className="block">
-                Men<span className="text-accent">e</span>
-                ghim
+              <span className="block whitespace-nowrap">
+                Men<span className="text-accent">e</span>gh
+                <span className="relative inline-block">
+                  I
+                  {/* Sun anchored to the I letterform. Size scales with letter
+                      height via em units, so position stays glued at every
+                      viewport size without media queries. */}
+                  <SunRise
+                    className="
+                      z-[-1]
+                      w-[1.5em] h-[2.2em]
+                      top-[-1.12em] left-[-60%]
+                      -translate-x-1/2
+                      [clip-path:inset(0_0_50%_0)]
+                    "
+                  />
+                </span>
+                m
               </span>
             </h1>
           </div>
