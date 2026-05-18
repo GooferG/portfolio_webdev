@@ -20,18 +20,40 @@ const bigShoulders = Big_Shoulders({
   weight: ['700', '900'],
 });
 
+const SITE_URL = 'https://luizmeneghim.com'; // update if your domain differs
+const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Luiz Meneghim - Frontend Developer & AI Engineer',
     template: '%s | Luiz Meneghim',
   },
   description:
-    'I build things for the web - and teach machines to think. Frontend development, AI consulting, LLM engineering, and freelance tech services.',
+    'Frontend engineer and AI builder. I ship React + Next.js apps and wire LLMs into products that work.',
   openGraph: {
     title: 'Luiz Meneghim - Frontend Developer & AI Engineer',
     description:
-      'Frontend development, AI consulting, LLM engineering, and freelance tech services.',
+      'Frontend engineer and AI builder. I ship React + Next.js apps and wire LLMs into products that work.',
+    url: SITE_URL,
+    siteName: 'Luiz Meneghim',
     type: 'website',
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: 'Luiz Meneghim — Frontend Developer & AI Engineer',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Luiz Meneghim - Frontend Developer & AI Engineer',
+    description:
+      'Frontend engineer and AI builder. I ship React + Next.js apps and wire LLMs into products that work.',
+    images: [OG_IMAGE],
+    creator: '@Goofer_G',
   },
 };
 
