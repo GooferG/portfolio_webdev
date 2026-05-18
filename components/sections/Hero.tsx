@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { ShaderBackground } from '@/components/ui/ShaderBackground';
+import { SunRise, useSunIntro } from '@/components/ui/SunRise';
 import { SOCIALS } from '@/lib/socials';
 
 type Status = { label: string };
@@ -10,13 +11,17 @@ type Status = { label: string };
 function getStatus(hour: number): Status {
   if (hour >= 6 && hour < 9) return { label: 'Just made coffee' };
   if (hour >= 12 && hour < 13) return { label: 'Out for lunch, back at 1pm' };
-  if (hour >= 17 && hour < 22) return { label: 'Off the clock, replies tomorrow' };
-  if (hour >= 22 || hour < 6) return { label: 'Asleep, but the form still works' };
+  if (hour >= 17 && hour < 22)
+    return { label: 'Off the clock, replies tomorrow' };
+  if (hour >= 22 || hour < 6)
+    return { label: 'Asleep, but the form still works' };
   return { label: 'Available for freelance' };
 }
 
 function useLocalStatus(): Status {
-  const [status, setStatus] = useState<Status>({ label: 'Available for freelance' });
+  const [status, setStatus] = useState<Status>({
+    label: 'Available for freelance',
+  });
 
   useEffect(() => {
     const update = () => setStatus(getStatus(new Date().getHours()));
@@ -30,6 +35,11 @@ function useLocalStatus(): Status {
 
 export default function Hero() {
   const status = useLocalStatus();
+  const introPhase = useSunIntro();
+
+  // Hero content fades in once the sun starts rising. During 'pending' (pre-mount)
+  // the content is invisible; once intro starts, it cross-fades in over the sun rise.
+  const contentVisible = introPhase !== 'pending';
 
   return (
     <section id="hero" className="relative min-h-screen overflow-hidden">
@@ -44,13 +54,31 @@ export default function Hero() {
         <div aria-hidden="true" />
 
         {/* Middle: asymmetric grid */}
-        <div className="grid grid-cols-12 gap-x-6 gap-y-12 items-start py-12">
-          <div className="col-span-12 lg:col-span-7">
+        <div className="grid grid-cols-12 gap-x-6 gap-y-12 items-start py-12 relative">
+          {/* Sun sits behind the name. Positioned over the `e` row of MENEGHIM. */}
+          <SunRise
+            className="
+              hidden lg:block
+              z-0
+              w-[16vw] h-[16vw] max-w-50 max-h-50
+              top-[50%] left-[38%]
+              -translate-x-1/2 -translate-y-1/2
+							[clip-path:inset(0_0_50%_0)]
+            "
+          />
+
+          <div className="col-span-12 lg:col-span-7 relative z-10">
             <h1
               className="font-display text-fg-strong leading-[0.82] tracking-tight uppercase"
               style={{
                 fontWeight: 900,
                 fontSize: 'clamp(4.5rem, 13vw, 11rem)',
+                opacity: contentVisible ? 1 : 0,
+                transform: contentVisible
+                  ? 'translateY(0)'
+                  : 'translateY(12px)',
+                transition:
+                  'opacity 900ms ease-out 400ms, transform 900ms cubic-bezier(0.22, 1, 0.36, 1) 400ms',
               }}
             >
               <span className="block">Luiz</span>
@@ -61,7 +89,15 @@ export default function Hero() {
             </h1>
           </div>
 
-          <div className="col-span-12 lg:col-span-4 lg:col-start-9 flex flex-col gap-8 lg:pt-4">
+          <div
+            className="col-span-12 lg:col-span-4 lg:col-start-9 flex flex-col gap-8 lg:pt-4 relative z-10"
+            style={{
+              opacity: contentVisible ? 1 : 0,
+              transform: contentVisible ? 'translateY(0)' : 'translateY(12px)',
+              transition:
+                'opacity 900ms ease-out 700ms, transform 900ms cubic-bezier(0.22, 1, 0.36, 1) 700ms',
+            }}
+          >
             <p className="text-fg-default text-lg leading-relaxed max-w-sm">
               Frontend engineer and AI builder. I ship React + Next.js apps and
               wire <span className="text-accent">LLMs</span> into products that
@@ -92,7 +128,13 @@ export default function Hero() {
         </div>
 
         {/* Bottom: status row + socials */}
-        <div className="flex flex-wrap items-end justify-between gap-6 text-xs font-mono">
+        <div
+          className="flex flex-wrap items-end justify-between gap-6 text-xs font-mono"
+          style={{
+            opacity: contentVisible ? 1 : 0,
+            transition: 'opacity 900ms ease-out 1000ms',
+          }}
+        >
           <div className="flex items-center gap-3 text-fg-muted">
             <span className="w-1.5 h-1.5 rounded-full bg-accent" />
             <span>{status.label}</span>
